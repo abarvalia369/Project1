@@ -5,6 +5,11 @@ Arpeet Barvalia
 Jonathon John
 
 
-Commit: Saves From Teast Branch to Main Branhc
+Commit: Saves From Test Branch to Main Branch
 
 Push: Saves From Local to Remote(Github)
+
+Tutorials:
+https://www.youtube.com/watch?v=qM5BScv1Z-s
+
+https://hackmd.io/N90wLsz-Q6aV_7qKfJwAEA
