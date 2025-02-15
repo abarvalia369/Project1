@@ -1,0 +1,86 @@
+o
+c
+q
+d
+w
+p
+pi
+a
+A
+P
+
+O  checking  bridgewater   John Doe 2/19/2000 500
+P
+O  checking  bridgewater   John Doe 0/19/2000 200
+O  checking  bridgewater   John Doe 13/19/2000 200
+O  checking  bridgewater   John Doe 2/29/1999 200
+O  checking  bridgewater   John Doe 6/31/2000 200
+O  checking  bridgewater   John Doe 8/32/2000 200
+O  checking  bridgewater   John Doe 8/0/2000 200
+
+O  checkng   bridgewater   John Doe 2/19/2000 200
+O  checking  bridgwater    John Doe 2/19/2000 200
+O  checking  bridgewater   John Doe 3/1/2007 200
+O  checking  bridgewater   John Doe 2/19/2026 200
+O  checking  bridgewater   John Doe 2/19/2000 -200
+O  checking  bridgewater   John Doe 2/19/2000 abc
+O  checking  bridgewater   John Doe 3/19/2000 0
+O  checking  bridgewater   John Doe 2/19/2000 500
+O  savings   bridgewater   John Doe 2/19/2000 500
+O  moneymarket  bridgewater   John Doe 2/19/2000 500
+O  moneymarket  bridgewater   John Doe 2/19/2000 2500
+O  savings      edison   john doe 2/19/2000 500
+O  moneymarket  edison   John Doe 2/19/2000 500
+
+O  Checking princeton    April March 1/15/1987 300
+O  Savings  princeton	 April March 1/15/1987 1500
+O  Checking piscataway   Jason Brown 2/1/2007 1200
+O  Checking warren   Kate Lindsey 8/31/2001 450
+O  savings  warren   Kate Lindsey 8/31/2001 450
+O  checking warren   Kate Lindsey 8/31/2001 450
+O  moneymarket bridgewater   Roy Brooks 11/2/2005 2900
+O  moneymarket bridgewater   Roy Brooks 2/29/2002 2500
+O  moneymarket warren        Roy Brooks 11/2/2005 2560
+O  moneymarket Piscataway    Roy Brooks 2/28/2002 2820
+O  savings     Piscataway    Chris Young 9/20/2004 1200
+O  savings     warren        chris young 9/20/2004 500
+O  savings   edison   Duke Ellington 11/2/2002 1110
+O  savings   edison   Jane Doe 11/2/2002 800
+O  Savings   edison   Jason Brown 4/1/1990 300
+O  checking  edison   John Doe 7/8/1999 500
+O  savings   edison   John Doe 7/8/1999 1500
+O  moneymarket Princeton Eric Johnson 8/8/1999 4500
+O  moneymarket Princeton duke ellington 11/2/2002 3200
+O  moneymarket Princeton Duke Ellington 11/2/2002 3200
+O  moneymarket Piscataway Jason Brown 2/1/2007 5100
+P
+
+D  200017410 -100
+D  200017410 0
+D  200017410 abc
+D  200017410 100
+P
+
+W  200030432 -100
+W  200030432 0
+W  200030432 ABC
+W  200030432 100
+W  200030432 500
+W  200030432 2000
+W  200020432 2000
+P
+PH
+PT
+PB
+
+C  100029464
+C  100029464
+C  Kate Lindsey 8/31/2001
+C  Kate Lindsey 8/31/2001
+O  savings bridgewater  Kate Lindsey 8/31/2001 300
+C  duke ellington 11/2/2002
+C  duke ellington 11/2/2002
+PA
+PH
+Q
+This line should not be processed.
