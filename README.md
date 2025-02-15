@@ -2,7 +2,7 @@
 
 Arpeet Barvalia
 
-Jonathon John
+Jonathan John
 
 
 Commit: Saves From Test Branch to Main Branch
