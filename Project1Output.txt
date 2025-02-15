@@ -1,0 +1,249 @@
+Transaction Manager is running.
+
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Account database is empty!
+CHECKING account 200017410 has been opened.
+
+*List of accounts in the account database.
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+*end of list.
+
+DOB invalid: 0/19/2000 not a valid calendar date!
+DOB invalid: 13/19/2000 not a valid calendar date!
+DOB invalid: 2/29/1999 not a valid calendar date!
+DOB invalid: 6/31/2000 not a valid calendar date!
+DOB invalid: 8/32/2000 not a valid calendar date!
+DOB invalid: 8/0/2000 not a valid calendar date!
+checkng - invalid account type.
+bridgwater - invalid branch.
+Not eligible to open: 3/1/2007 under 18.
+DOB invalid: 2/19/2026 cannot be today or a future day.
+John Doe already has a checking account.
+For input string: "abc" - not a valid amount.
+Initial deposit cannot be 0 or negative.
+John Doe already has a checking account.
+SAVINGS account 200026899 has been opened.
+Minimum of $2,000 to open a Money Market account.
+MONEY_MARKET account 200030432 has been opened.
+john doe already has a savings account.
+John Doe already has a moneymarket account.
+CHECKING account 300019048 has been opened.
+SAVINGS account 300023147 has been opened.
+CHECKING account 400012615 has been opened.
+CHECKING account 500011866 has been opened.
+SAVINGS account 500024127 has been opened.
+Kate Lindsey already has a checking account.
+MONEY_MARKET account 200032742 has been opened.
+DOB invalid: 2/29/2002 not a valid calendar date!
+Roy Brooks already has a moneymarket account.
+MONEY_MARKET account 400037979 has been opened.
+SAVINGS account 400027003 has been opened.
+chris young already has a savings account.
+SAVINGS account 100027458 has been opened.
+SAVINGS account 100027432 has been opened.
+SAVINGS account 100026682 has been opened.
+CHECKING account 100014566 has been opened.
+SAVINGS account 100029464 has been opened.
+MONEY_MARKET account 300033095 has been opened.
+MONEY_MARKET account 300033688 has been opened.
+Duke Ellington already has a moneymarket account.
+MONEY_MARKET account 400033343 has been opened.
+
+*List of accounts in the account database.
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[200030432] Holder[John Doe 2/19/2000] Balance[$2,500.00] Branch[BRIDGEWATER]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$300.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,500.00] Branch[PRINCETON]
+Account#[400012615] Holder[Jason Brown 2/1/2007] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$2,900.00] Branch[BRIDGEWATER]
+Account#[400037979] Holder[Roy Brooks 2/28/2002] Balance[$2,820.00] Branch[PISCATAWAY]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[100027458] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[100027432] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100026682] Holder[Jason Brown 4/1/1990] Balance[$300.00] Branch[EDISON]
+Account#[100014566] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[100029464] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON]
+Account#[300033095] Holder[Eric Johnson 8/8/1999] Balance[$4,500.00] Branch[PRINCETON]
+Account#[300033688] Holder[duke ellington 11/2/2002] Balance[$3,200.00] Branch[PRINCETON]
+Account#[400033343] Holder[Jason Brown 2/1/2007] Balance[$5,100.00] Branch[PISCATAWAY]
+*end of list.
+
+-100.0 - deposit amount cannot be 0 or negative.
+0.0 - deposit amount cannot be 0 or negative.
+For input string: "abc" - not a valid amount.
+$100.00 deposited to 200017410
+
+*List of accounts in the account database.
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[200030432] Holder[John Doe 2/19/2000] Balance[$2,500.00] Branch[BRIDGEWATER]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$300.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,500.00] Branch[PRINCETON]
+Account#[400012615] Holder[Jason Brown 2/1/2007] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$2,900.00] Branch[BRIDGEWATER]
+Account#[400037979] Holder[Roy Brooks 2/28/2002] Balance[$2,820.00] Branch[PISCATAWAY]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[100027458] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[100027432] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100026682] Holder[Jason Brown 4/1/1990] Balance[$300.00] Branch[EDISON]
+Account#[100014566] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[100029464] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON]
+Account#[300033095] Holder[Eric Johnson 8/8/1999] Balance[$4,500.00] Branch[PRINCETON]
+Account#[300033688] Holder[duke ellington 11/2/2002] Balance[$3,200.00] Branch[PRINCETON]
+Account#[400033343] Holder[Jason Brown 2/1/2007] Balance[$5,100.00] Branch[PISCATAWAY]
+*end of list.
+
+-100.0 withdrawal amount cannot be 0 or negative.
+0.0 withdrawal amount cannot be 0 or negative.
+For input string: "ABC" - not a valid amount.
+$100.00 withdrawn from 200030432
+200030432 is downgraded to SAVINGS - $500.00 withdrawn from 200030432
+200030432 does not exist.
+200020432 - insufficient funds.
+
+*List of accounts in the account database.
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[200020432] Holder[John Doe 2/19/2000] Balance[$1,900.00] Branch[BRIDGEWATER]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$300.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,500.00] Branch[PRINCETON]
+Account#[400012615] Holder[Jason Brown 2/1/2007] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$2,900.00] Branch[BRIDGEWATER]
+Account#[400037979] Holder[Roy Brooks 2/28/2002] Balance[$2,820.00] Branch[PISCATAWAY]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[100027458] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[100027432] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100026682] Holder[Jason Brown 4/1/1990] Balance[$300.00] Branch[EDISON]
+Account#[100014566] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[100029464] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON]
+Account#[300033095] Holder[Eric Johnson 8/8/1999] Balance[$4,500.00] Branch[PRINCETON]
+Account#[300033688] Holder[duke ellington 11/2/2002] Balance[$3,200.00] Branch[PRINCETON]
+Account#[400033343] Holder[Jason Brown 2/1/2007] Balance[$5,100.00] Branch[PISCATAWAY]
+*end of list.
+
+
+*List of accounts ordered by account holder and number.
+Account#[400037979] Holder[Roy Brooks 2/28/2002] Balance[$2,820.00] Branch[PISCATAWAY]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$2,900.00] Branch[BRIDGEWATER]
+Account#[100026682] Holder[Jason Brown 4/1/1990] Balance[$300.00] Branch[EDISON]
+Account#[400012615] Holder[Jason Brown 2/1/2007] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[400033343] Holder[Jason Brown 2/1/2007] Balance[$5,100.00] Branch[PISCATAWAY]
+Account#[100027432] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100014566] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[100029464] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
+Account#[200020432] Holder[John Doe 2/19/2000] Balance[$1,900.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[100027458] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[300033688] Holder[duke ellington 11/2/2002] Balance[$3,200.00] Branch[PRINCETON]
+Account#[300033095] Holder[Eric Johnson 8/8/1999] Balance[$4,500.00] Branch[PRINCETON]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$300.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,500.00] Branch[PRINCETON]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$1,200.00] Branch[PISCATAWAY]
+*end of list.
+
+
+*List of accounts ordered by account type and number.
+Account Type: CHECKING
+Account#[100014566] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$300.00] Branch[PRINCETON]
+Account#[400012615] Holder[Jason Brown 2/1/2007] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account Type: SAVINGS
+Account#[100026682] Holder[Jason Brown 4/1/1990] Balance[$300.00] Branch[EDISON]
+Account#[100027432] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100027458] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[100029464] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON]
+Account#[200020432] Holder[John Doe 2/19/2000] Balance[$1,900.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,500.00] Branch[PRINCETON]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account Type: MONEY_MARKET
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$2,900.00] Branch[BRIDGEWATER]
+Account#[300033095] Holder[Eric Johnson 8/8/1999] Balance[$4,500.00] Branch[PRINCETON]
+Account#[300033688] Holder[duke ellington 11/2/2002] Balance[$3,200.00] Branch[PRINCETON]
+Account#[400033343] Holder[Jason Brown 2/1/2007] Balance[$5,100.00] Branch[PISCATAWAY]
+Account#[400037979] Holder[Roy Brooks 2/28/2002] Balance[$2,820.00] Branch[PISCATAWAY]
+*end of list.
+
+
+*List of accounts ordered by branch location (county, city).
+County: Mercer
+Account#[300019048] Holder[April March 1/15/1987] Balance[$300.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,500.00] Branch[PRINCETON]
+Account#[300033095] Holder[Eric Johnson 8/8/1999] Balance[$4,500.00] Branch[PRINCETON]
+Account#[300033688] Holder[duke ellington 11/2/2002] Balance[$3,200.00] Branch[PRINCETON]
+County: Middlesex
+Account#[100026682] Holder[Jason Brown 4/1/1990] Balance[$300.00] Branch[EDISON]
+Account#[100027432] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100027458] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[100029464] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON]
+Account#[100014566] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[400012615] Holder[Jason Brown 2/1/2007] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[400033343] Holder[Jason Brown 2/1/2007] Balance[$5,100.00] Branch[PISCATAWAY]
+Account#[400037979] Holder[Roy Brooks 2/28/2002] Balance[$2,820.00] Branch[PISCATAWAY]
+County: Somerset
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$2,900.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
+Account#[200020432] Holder[John Doe 2/19/2000] Balance[$1,900.00] Branch[BRIDGEWATER]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$450.00] Branch[WARREN]
+*end of list.
+
+100029464 is closed and moved to archive; balance set to 0.
+100029464 account does not exist.
+All accounts for Kate Lindsey 8/31/2001 are closed and moved to archive; balance set to 0.
+Kate Lindsey 8/31/2001 does not have any accounts in the database.
+SAVINGS account 200021134 has been opened.
+All accounts for duke ellington 11/2/2002 are closed and moved to archive; balance set to 0.
+duke ellington 11/2/2002 does not have any accounts in the database.
+
+*List of closed accounts in the archive.
+Account#[100027458] Holder[Duke Ellington 11/2/2002] Balance[$0.00] Branch[EDISON]
+Account#[300033688] Holder[duke ellington 11/2/2002] Balance[$0.00] Branch[PRINCETON]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$0.00] Branch[WARREN]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$0.00] Branch[WARREN]
+Account#[100029464] Holder[John Doe 7/8/1999] Balance[$0.00] Branch[EDISON]
+*end of list.
+
+
+*List of accounts ordered by account holder and number.
+Account#[400037979] Holder[Roy Brooks 2/28/2002] Balance[$2,820.00] Branch[PISCATAWAY]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$2,900.00] Branch[BRIDGEWATER]
+Account#[100026682] Holder[Jason Brown 4/1/1990] Balance[$300.00] Branch[EDISON]
+Account#[400012615] Holder[Jason Brown 2/1/2007] Balance[$1,200.00] Branch[PISCATAWAY]
+Account#[400033343] Holder[Jason Brown 2/1/2007] Balance[$5,100.00] Branch[PISCATAWAY]
+Account#[100027432] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100014566] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
+Account#[200020432] Holder[John Doe 2/19/2000] Balance[$1,900.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$500.00] Branch[BRIDGEWATER]
+Account#[300033095] Holder[Eric Johnson 8/8/1999] Balance[$4,500.00] Branch[PRINCETON]
+Account#[200021134] Holder[Kate Lindsey 8/31/2001] Balance[$300.00] Branch[BRIDGEWATER]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$300.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,500.00] Branch[PRINCETON]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$1,200.00] Branch[PISCATAWAY]
+*end of list.
+
+Transaction Manager is terminated.
