@@ -1,12 +1,14 @@
 package project1;
 
 /**
- •	Account class for RU Bank project.
- •	Represents a bank account with an account number, holder profile, and balance.
- •	Implements deposit and withdrawal operations and overrides equals, toString, and compareTo.
- •
- •	@author YourName
+ Account class for RU Bank project.
+ Represents a bank account with an account number, holder profile, and balance.
+ Implements deposit and withdrawal operations overrides equals, toString, and compareTo.
+ Overrides equals, toString, and compareTo.
+
+ @author Arpeet
  */
+
 public class Account implements Comparable<Account> {
     private AccountNumber number;
     private Profile       holder;
@@ -26,6 +28,7 @@ public class Account implements Comparable<Account> {
     public double getBalance() {
         return balance;
     }
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj) return true;
