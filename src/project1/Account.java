@@ -65,6 +65,12 @@ public class Account implements Comparable<Account> {
         this.balance = balance;
     }
 
+    /**
+     * A method that returns if two accounts have the same account number
+     *
+     * @param obj
+     * @return true if equal, false if not equal
+     */
     @Override
     public boolean equals(Object obj) {
         if( obj == null || !( obj instanceof Account ) ){
@@ -74,13 +80,25 @@ public class Account implements Comparable<Account> {
         return this.number.equals(other.number);
     }
 
+    /**
+     * A method returns a textual representation of an account in the following format.
+     * Format: Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
+     *
+     * @return returns all Account information in the above format
+     */
     @Override
     public String toString() {
-// Format: Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
         java.text.DecimalFormat df = new java.text.DecimalFormat("$0.00");
         return "Account#[" + number.toString() + "] Holder[" + holder.toString() + "] Balance["
         + df.format(balance) + "] Branch[" + number.getBranch().toString() + "]";
     }
+
+    /**
+     * A method that compares two account numbers to see which is greater or if they are equal.
+     *
+     * @param other the object to be compared.
+     * @return 1 if parameter is greater than Account, -1 if parameter is less than, and 0 if parameter is equal.
+     */
     @Override
     public int compareTo(Account other) {
         return this.number.toString().compareTo(other.number.toString());
