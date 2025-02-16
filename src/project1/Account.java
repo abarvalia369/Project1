@@ -68,18 +68,18 @@ public class Account implements Comparable<Account> {
     /**
      * A method that returns if two accounts have the same account number
      *
-     * @param obj
+     * @param obj the object to be compared.
      * @return true if equal, false if not equal
      */
     @Override
     public boolean equals(Object obj) {
-        if( obj == null || !( obj instanceof Account ) ){
-            return false;
+        if( obj instanceof Account other ){
+            return this.number.toString().equals(other.number.toString());
         }
-        Account other = (Account) obj;
-        return this.number.equals(other.number);
-    }
+        return false;
 
+    }
+s
     /**
      * A method returns a textual representation of an account in the following format.
      * Format: Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
