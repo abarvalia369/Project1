@@ -117,8 +117,8 @@ public class Date implements Comparable<Date> {
         boolean isLeapYear = false;
         if(year < 0)
             return false;
-        if(year % 4 == 0) { //must be divisible by four years
-            if (year % 100 != 0) { //if divisible by four, must not be divisible by 100 years
+        if(year % 4 == 0) { //must be divisible by four  years
+            if (year % 100 != 0) { //if divisible by four, must not be divisible by 100
                 isLeapYear = true;
             } else if(year % 400 == 0) { // unless also divisible by 400 years
                     isLeapYear = true;
