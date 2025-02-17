@@ -120,6 +120,11 @@ public class Date implements Comparable<Date> {
      */
     public boolean isValid() {
         //Check if Leap Year according to rules
+        Date pointer = new Date(year, month, day);
+        Date today = new Date();
+        if(pointer.compareTo(today) > 0){
+            return false; 
+        }
         boolean isLeapYear = false;
         if(year < 0)
             return false;
@@ -161,7 +166,7 @@ public class Date implements Comparable<Date> {
     public static void main(String[] args) {
 
         Date date0 = new Date(2023, 3, 0);
-        System.out.println("Test 0 (0th of the Month): " + date0.isValid()); // Expected: false
+        System.out.println("Test 0 (0th of the Month): " + date0.isValid()); // Expected: false (1st Invalid)
 
         // The following tests validate our constructor
         Date date1 = new Date();
@@ -175,16 +180,19 @@ public class Date implements Comparable<Date> {
         
         //The following tests validate our isValid() method for regular and leap years
         Date date4 = new Date(2003, 5, 22);
-        System.out.println("Test 4 (Valid Date): " + date4.isValid()); // Expected: true
+        System.out.println("Test 4 (Valid Date): " + date4.isValid()); // Expected: true (1st Valid)
   
         Date date5 = new Date(2023, 9, 31);
-        System.out.println("Test 5 (Invalid Day): " + date5.isValid()); // Expected: false
+        System.out.println("Test 5 (Invalid Day): " + date5.isValid()); // Expected: false (2nd Invalid)
 
         Date date6 = new Date(2024, 2, 29);
-        System.out.println("Test 6 (Valid Leap Year): " + date6.isValid()); // Expected: true
+        System.out.println("Test 6 (Valid Leap Year): " + date6.isValid()); // Expected: true (2nd Valid)
 
         Date date7 = new Date(2021, 2, 29);
-        System.out.println("Test 7 (Invalid Leap Year): " + date7.isValid()); // Expected: false
+        System.out.println("Test 7 (Invalid Leap Year): " + date7.isValid()); // Expected: false (3rd Invalid)
+
+        Date year = new Date(3005, 2, 29);
+        System.out.println("Year Invalid (Future Year): " + year.isValid()); // Expected: false (4th Invalid)
 
         //The following tests validate our compareTo() and equals() methods
         Date date8 = new Date(2004, 5, 4);
