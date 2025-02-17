@@ -42,4 +42,16 @@ getAccountType()
 
 getSerialNumber()
 
+AccountType.java:--------------------------------------
+
+getCode()
+
+Branch.java:----------------------------------------------
+
+getBranchCode()
+
+getCounty()
+
+getZip()
+
 
