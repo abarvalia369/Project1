@@ -67,7 +67,7 @@ public class Date implements Comparable<Date> {
         this.day = day;
     }
 
-        /**
+    /**
      * Return a textual representation of the Date object.
      *
      * @return a string of the date in MM/DD/YYYY Format
@@ -112,13 +112,18 @@ public class Date implements Comparable<Date> {
     }
 
 
-    // Check if the date is a valid calendar date
+    /**
+     * Checks if date is a valid date
+     *
+     * @param date the date object to be validated.
+     * @return Checks if valid year and if it is a leap year, than checks if it contains valid month and day.
+     */
     public boolean isValid() {
         //Check if Leap Year according to rules
         boolean isLeapYear = false;
         if(year < 0)
             return false;
-        if(year % 4 == 0) { //must be divisible by four  years
+        if(year % 4 == 0) { //must be divisible by four years
             if (year % 100 != 0) { //if divisible by four, must not be divisible by 100
                 isLeapYear = true;
             } else if(year % 400 == 0) { // unless also divisible by 400 years
