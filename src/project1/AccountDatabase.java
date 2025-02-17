@@ -32,10 +32,25 @@ public class AccountDatabase {
         return NOT_FOUND;
     } //return the index or -1 not found.
 
+    private int find(String accountNumber) {
+        for(int i = 0; i < size; i++){
+            if(accounts[i].getNumber().equals(accountNumber){
+                return i; 
+            }
+        }
+        return NOT_FOUND;
+    } //return the index or -1 not found.
 
     private void grow() {
-        this.setSize(this.getSize() + GROW); 
+        int newSize = this.getSize() + GROW; 
+        Account[] temp = new Account[newSize];
 
+        for (int i = 0; i < this.size; i++) { 
+            temp[i] = this.accounts[i];
+        }
+
+        this.accounts = temp; 
+        this.setSize(newSize); 
     } //increase the array capacity by 4
 
 
