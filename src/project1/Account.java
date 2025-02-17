@@ -33,6 +33,9 @@ public class Account implements Comparable<Account> {
      * @param amount the amount to be withdrawn
      */
     public void withdraw(double amount) {
+        if( amount > balance ){
+            System.out.println("Insufficient Funds.");
+        }
         this.balance -= amount;
     }
 
@@ -77,7 +80,6 @@ public class Account implements Comparable<Account> {
             return this.number.toString().equals(other.number.toString());
         }
         return false;
-
     }
 s
     /**
@@ -85,12 +87,11 @@ s
      * Format: Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]
      *
      * @return returns all Account information in the above format
+     * this may be wrong(called on the parameters wrong)
      */
     @Override
     public String toString() {
-        java.text.DecimalFormat df = new java.text.DecimalFormat("$0.00");
-        return "Account#[" + number.toString() + "] Holder[" + holder.toString() + "] Balance["
-        + df.format(balance) + "] Branch[" + number.getBranch().toString() + "]";
+        return "Account#[" + number.toString() + "] Holder[" + holder.toString() + "] Balance[" + String.format( "$%.2f" , balance) + "] Branch[" + number.getBranch().name() + "]";
     }
 
     /**
