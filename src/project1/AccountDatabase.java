@@ -25,8 +25,10 @@ public class AccountDatabase {
     
     private int find(Account account) {
         for(int i = 0; i < size; i++){
-            if(accounts[i].equals(account)){
+            if(accounts[i] != null){
+                if(accounts[i].equals(account)){
                 return i; 
+                }
             }
         }
         return NOT_FOUND;
@@ -34,8 +36,10 @@ public class AccountDatabase {
 
     private int find(String accountNumber) {
         for(int i = 0; i < size; i++){
-            if(accounts[i].getNumber().equals(accountNumber){
+            if(accounts[i] != null){
+                if(accounts[i].getNumber().equals(accountNumber)){
                 return i; 
+                }
             }
         }
         return NOT_FOUND;
@@ -55,7 +59,7 @@ public class AccountDatabase {
 
 
     public boolean contains(Account account) {
-        if (this.find(account) != -1){
+        if (this.find(account) != NOT_FOUND){
             return true;
         } 
         return false; 
