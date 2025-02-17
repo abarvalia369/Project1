@@ -22,7 +22,7 @@ public class Date implements Comparable<Date> {
     public static final int SHORTMONTHDAYS = 30;
     public static final int FEBRUARYDAYS = 28;
     public static final int FEBRUARYLEAP = 29;
-    public static final int MONTHFIRSTDAY = 1;
+
 
     public Date() {
         Calendar today = Calendar.getInstance();
@@ -129,7 +129,7 @@ public class Date implements Comparable<Date> {
         if(month < JANUARY || month > DECEMBER)
             return false;
         //Check if valid day according to month
-        if(day < MONTHFIRSTDAY)
+        if(day < 1) //first of the month
             return false;
         if(month == FEBRUARY) {
             if(isLeapYear) {
@@ -154,10 +154,14 @@ public class Date implements Comparable<Date> {
 
 
     public static void main(String[] args) {
+
+        Date date0 = new Date(2023, 3, 0);
+        System.out.println("Test 0 (0th of the Month): " + date0.isValid()); // Expected: false
+
         // The following tests validate our constructor
         Date date1 = new Date();
         System.out.println("Test 1 (Default Constructor): " + date1.toString()); // Expected: Current Date
-
+        
         Date date2 = new Date(2004, 5, 4);
         System.out.println("Test 2 (Valid Date): " + date2.toString()); // Expected: 05/04/2004
 
