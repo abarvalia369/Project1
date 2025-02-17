@@ -50,6 +50,10 @@ public class AccountNumber implements Comparable<AccountNumber> {
         return number;
     }
 
+    public void setAccountType(AccountType type){
+        this.type = type; 
+    }
+
 
     @Override
     public boolean isEqual(Object obj){

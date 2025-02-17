@@ -25,8 +25,8 @@ public class AccountDatabase {
     
     private int find(Account account) {
         for(int i = 0; i < size; i++){
-            if(accounts[i] != null){
-                if(accounts[i].equals(account)){
+            if(this.accounts[i] != null){
+                if(this.accounts[i].equals(account)){
                 return i; 
                 }
             }
@@ -36,14 +36,25 @@ public class AccountDatabase {
 
     private int find(String accountNumber) {
         for(int i = 0; i < size; i++){
-            if(accounts[i] != null){
-                if(accounts[i].getNumber().equals(accountNumber)){
+            if(this.accounts[i] != null){
+                if(this.accounts[i].getNumber().isEqual(accountNumber)){
                 return i; 
                 }
             }
         }
         return NOT_FOUND;
     } //return the index or -1 not found.
+
+    private int find(AccountNumber accountNumber){
+        for(int i = 0; i < size; i++){
+            if(this.accounts[i] != null){
+                if(this.accounts[i].getNumber().isEqual(accountNumber)){
+                return i; 
+                }
+            }
+        }
+        return NOT_FOUND;
+    }
 
     private void grow() {
         int newSize = this.getSize() + GROW; 
@@ -65,20 +76,66 @@ public class AccountDatabase {
         return false; 
     } //check before add/remove
 
+    public boolean contains(AccountNumber accountNumber){
+        if (this.find(accountNumber) != NOT_FOUND){
+            return true; 
+        }
+    } 
+
+    public boolean contains(String accountNumber){
+        if (this.find(accountNumber) != NOT_FOUND){
+            return true; 
+        }
+    } 
+
 
     public void add(Account account) {
         if(this.contains(account)){
             return;
         }
+        for(int i = 0; i < this.size; i++){
+            if(this.accounts[i] == null{
+                this.accounts[i] = account; 
+                return;
+            }
+        }
+        this.grow();
+        for(int j = 0; j < this.size; j++){
+            if(this.accounts[j] == null{
+                this.accounts[j] = account; 
+                return;
+            }
+        }
+
 
 
     } //add to end of array
 
     public void remove(Account account) {
-
+        if (this.contains(account)) {
+            this.archive.add(this.accounts[this.find(account)]);
+            this.accounts[this.find(account)] = this.accounts[this.size - SIZEARRAYOFFSET];
+            this.accounts[this.size - SIZEARRAYOFFSET] = null;
+        }
+        else{
+            return;
+        }
     }//replace it with the last item
 
     public boolean withdraw(AccountNumber number, double amount) {
+        if(this.find(number) == -1){
+            return false; 
+        }
+        int index = this.find(number);
+        double newBalance = this.accounts[index].getBalance() - amount; 
+
+        if(newBalance >= 2000.00){
+            this.accounts[index].setBalance(newBalance);
+            return true; 
+        }
+        else if(newBalance > 0.00){
+            accounts[index].setNumber
+        }
 
     }
 
