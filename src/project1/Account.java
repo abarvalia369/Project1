@@ -6,7 +6,7 @@ package project1;
  Implements deposit and withdrawal operations.
  Overrides equals, toString, and compareTo.
 
- @author ArpeetBarvalia, Jonathan John
+ @author arpeet barvalia, jonathan john
  */
 
 public class Account implements Comparable<Account> {

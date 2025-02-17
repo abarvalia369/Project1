@@ -5,7 +5,7 @@ import java.util.Random;
  * A Account Number class for RU banking project that defines a unique 9-digit account number.
  * 9-digit code = 3-digit area code + 2-digit account type + 4-digit random number
  *
- * @author arpeet barvalia jonathanjohn
+ * @author arpeet barvalia, jonathanjohn
  */
 public class AccountNumber implements Comparable<AccountNumber> {
     private static final int SEED = 9999;
