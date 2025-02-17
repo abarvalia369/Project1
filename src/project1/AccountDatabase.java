@@ -123,24 +123,30 @@ public class AccountDatabase {
     }//replace it with the last item
 
     public boolean withdraw(AccountNumber number, double amount) {
-        if(this.find(number) == -1){
+        if(this.find(number) == NOT_FOUND){
             return false; 
         }
         int index = this.find(number);
         double newBalance = this.accounts[index].getBalance() - amount; 
-
+        this.accounts[index].setBalance(newBalance);
         if(newBalance >= 2000.00){
-            this.accounts[index].setBalance(newBalance);
             return true; 
         }
         else if(newBalance > 0.00){
-            accounts[index].setNumber
+            this.accounts[index].setAccountType(AccountType.RegularSavings)
+            return true;
+        }
+        else{
+            return false;
         }
 
     }
 
     public void deposit(AccountNumber number, double amount) {
-
+        int index = find(number);
+        if (index != NOT_FOUND) {
+            accounts[index].setBalance()
+        }
     }
 
     public void printArchive() //print closed accounts
