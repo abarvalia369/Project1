@@ -42,6 +42,8 @@ getAccountType()
 
 getSerialNumber()
 
+randomNumber()
+
 AccountType.java:--------------------------------------
 
 getCode()
