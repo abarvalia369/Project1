@@ -38,8 +38,6 @@ public class AccountNumber implements Comparable<AccountNumber> {
         return String.format("%04d", new Random().nextInt(10000));
     }
 
-//Do we need another AccountNUmber constructor for changing account types or with only 1 parameter?
-
     public Branch getBranch(){
         return branch;
     }
@@ -54,7 +52,10 @@ public class AccountNumber implements Comparable<AccountNumber> {
         this.type = type; 
     }
 
-
+    /**
+     * @param obj check if obj equals the current account number
+     * @return return true if two AccountNumber objects match, if not, return false. 
+     */
     @Override
     public boolean equals(Object obj){
         if( obj instanceof AccountNumber other ){
@@ -62,15 +63,32 @@ public class AccountNumber implements Comparable<AccountNumber> {
         }
         return false;
     }
-
+    /**
+     * A method that represents the Branch object as a string. 
+     *
+     * @return returns Branch as a string. 
+     */
     @Override
     public String toString(){
         return branch.getBranchCode() + type.getCode() + number;
     }
-
+    /**
+     * A method that returns if two accounts have the same account number
+     *
+     * @param other object that is being compared to current accountNumber
+     * @return returns 0 if equal, 1 if current accountNumber is greater than, else, -1
+     */
     @Override
     public int compareTo(AccountNumber other){
-        return this.toString().compareTo(other.toString());
+        if(this.toString().compareTo(other.toString()) > 0){
+            return 1;
+        }
+        else if(this.toString().compareTo(other.toString()) < 0){
+            return -1;
+        }
+        else{
+            return 0;
+        }
     }
 
 

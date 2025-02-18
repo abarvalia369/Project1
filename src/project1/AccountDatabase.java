@@ -1,4 +1,13 @@
 package project1;
+/**
+ Account class for RU Bank project.
+ Represents a bank account with an account number, holder profile, and balance.
+ Implements deposit and withdrawal operations.
+ Overrides equals, toString, and compareTo.
+
+ @author arpeet barvalia, jonathan john
+ */
+
 
 public class AccountDatabase {
     public static final int NOT_FOUND = -1;
@@ -8,6 +17,10 @@ public class AccountDatabase {
     private int size;
     private Archive archive; //a linked list of closed account
 
+    /**
+     * Initializes an AccountDataBase object with an array of Accounts, size(number of accounts) = 0, and an Archive
+     *
+     */
     public AccountDatabase() {
         this.accounts = new Account[4];
         this.size = 0;
@@ -21,7 +34,13 @@ public class AccountDatabase {
     public void setSize(int newSize){
         this.size = newSize;
     }
-    
+
+    /**
+     * A search method that traverses accounts in search for specfic account. 
+     *
+     * @param account Account that is being searched for in array accounts
+     * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
+     */
     private int find(Account account) {
         for(int i = 0; i < accounts.length; i++){
             if(this.accounts[i] != null){
@@ -31,8 +50,13 @@ public class AccountDatabase {
             }
         }
         return NOT_FOUND;
-    } //return the index or -1 not found.
-
+    } 
+    /**
+     * A search method that traverses accounts in search for specfic account by reference of accountNumber String
+     *
+     * @param account Account that is being searched for in array accounts
+     * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
+     */
     private int find(String accountNumber) {
         for(int i = 0; i < accounts.length; i++){
             if(this.accounts[i] != null){
@@ -44,6 +68,12 @@ public class AccountDatabase {
         return NOT_FOUND;
     } //return the index or -1 not found.
 
+    /**
+     * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber 
+     *
+     * @param account Account that is being searched for in array accounts
+     * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
+     */
     private int find(AccountNumber accountNumber){
         for(int i = 0; i < accounts.length; i++){
             if(this.accounts[i] != null){
@@ -55,6 +85,9 @@ public class AccountDatabase {
         return NOT_FOUND;
     }
 
+    /**
+     * A method for increasing the capacity of the array accounts by 4 or GROW
+     */
     private void grow() {
         int newCap = this.accounts.length + GROW; 
         Account[] temp = new Account[newCap];
@@ -66,7 +99,12 @@ public class AccountDatabase {
         this.accounts = temp; 
     } //increase the array capacity by 4
 
-
+    /**
+     * A search method that traverses accounts in search for specfic account, returning it's status
+     *
+     * @param account Account that is being searched for in array accounts
+     * @return returns a boolean on whether or not the account can be found within the array accounts. 
+     */
     public boolean contains(Account account) {
         if (this.find(account) != NOT_FOUND){
             return true;
@@ -74,6 +112,12 @@ public class AccountDatabase {
         return false; 
     } //check before add/remove
 
+    /**
+     * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber, returning it's status
+     *
+     * @param account Account that is being searched for in array accounts
+     * @return returns a boolean on whether or not the account can be found within the array accounts. 
+     */
     public boolean contains(AccountNumber accountNumber){
         if (this.find(accountNumber) != NOT_FOUND){
             return true; 
@@ -81,6 +125,12 @@ public class AccountDatabase {
         return false;
     } 
 
+    /**
+     * A search method that traverses accounts in search for specfic account by reference of String ccountNumber, returning it's status
+     *
+     * @param account Account that is being searched for in array accounts
+     * @return returns a boolean on whether or not the account can be found within the array accounts. 
+     */
     public boolean contains(String accountNumber){
         if (this.find(accountNumber) != NOT_FOUND){
             return true; 
@@ -88,7 +138,11 @@ public class AccountDatabase {
         return false;
     } 
 
-
+    /**
+     * A method for adding an Account to the Database
+     *
+     * @param account Account that is being added to database
+     */
     public void add(Account account) {
         if(this.contains(account)){
             return;
@@ -109,10 +163,13 @@ public class AccountDatabase {
             }
         }
 
+    } 
 
-
-    } //add to end of array
-
+    /**
+     * A method for removing the Account and replacing it with the last Account in the dataBase
+     *
+     * @param account Account that is being removed
+     */
     public void remove(Account account) {
         if (this.contains(account)) {
             this.archive.add(this.accounts[this.find(account)]);
@@ -123,8 +180,15 @@ public class AccountDatabase {
         else{
             return;
         }
-    }//replace it with the last item
+    }
 
+    /**
+     * A method for subtracting an ammount ot the balance of an Account
+     *
+     * @param number AccountNumber of the account that is being withdrawn from
+     * @param amount The Ammount of money client wants to withdraw
+     * @return returns a boolean on whether or not the amount could be with drawn
+     */
     public boolean withdraw(AccountNumber number, double amount) {
         if(this.find(number) == NOT_FOUND){
             return false; 
@@ -144,7 +208,13 @@ public class AccountDatabase {
         }
 
     }
-
+        
+    /**
+     * A method for adding an ammount to the balance of an Account
+     *
+     * @param number AccountNumber of the account that is being deposited to
+     * @param amount The amount of money client wants to deposit
+     */
     public void deposit(AccountNumber number, double amount) {
         int index = find(number);
         if (index != NOT_FOUND) {
@@ -153,12 +223,17 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * A method for printing the current archived accounts
+     */
     public void printArchive() {
         this.archive.print();
-    }//print closed accounts
+    }
 
 
-
+    /**
+     * A method for printing the current accounts in order of city and county 
+     */
     public void printByBranch() {
         if(this.size == 0) {
             System.out.println("Account database is empty!");
@@ -179,7 +254,10 @@ public class AccountDatabase {
         }
         System.out.println("*end of list.");
     }
-    
+
+    /**
+     * A method for printing the current accounts in order of holder and number 
+     */
     public void printByHolder() {
         if(this.size == 0) {
             System.out.println("Account database is empty!");
@@ -200,7 +278,9 @@ public class AccountDatabase {
         }
         System.out.println("*end of list.");
     }
-
+    /**
+     * A method for printing the current accounts in order of type and number 
+     */
     public void printByType() {
         if(this.size == 0) {
             System.out.println("Account database is empty!");
@@ -221,7 +301,9 @@ public class AccountDatabase {
         }
         System.out.println("*end of list.");
     }
-
+    /**
+     * A method for printing the current accounts in order of Database
+     */
     public void printOrder() {
         if(this.size == 0) {
             System.out.println("Account database is empty!");

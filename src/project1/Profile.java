@@ -1,16 +1,41 @@
 package project1;
+/**
+ Account class for RU Bank project.
+ Represents a bank account with an account number, holder profile, and balance.
+ Implements deposit and withdrawal operations.
+ Overrides equals, toString, and compareTo.
+
+ @author arpeet barvalia, jonathan john
+ */
+
 
 public class Profile implements Comparable<Profile>{
     private String fname;
     private String lname;
     private Date dob;
 
+    /**
+     * Initializes an Profile Object with the following 5 parameters.
+     *
+     * @param fname String first name
+     * @param lname String last name
+     * @param year int year
+     * @param month int month
+     * @param day int day
+     */
     public Profile(String fname, String lname, int year, int month, int day) {
         this.fname = fname;
         this.lname = lname;
         this.dob = new Date(year, month, day);
     }
 
+    /**
+     * Initializes an Profile Object with the following 3 parameters.
+     *
+     * @param fname String first name
+     * @param lname String last name
+     * @param date Date object
+     */
     public Profile(String fname, String lname, Date dob) {
         this.fname = fname;
         this.lname = lname;
@@ -52,6 +77,11 @@ public class Profile implements Comparable<Profile>{
         return dob.compareTo(adult) <= 0; 
     }
 
+    /**
+     * Return a textual representation of the Profile object.
+     *
+     * @return first and last name along with date of birth.
+     */
     @Override
     public String toString() {
         return fname + " " + lname + " " + dob.toString();

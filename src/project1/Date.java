@@ -1,5 +1,13 @@
 package project1;
 import java.util.Calendar;
+/**
+ Account class for RU Bank project.
+ Represents a bank account with an account number, holder profile, and balance.
+ Implements deposit and withdrawal operations.
+ Overrides equals, toString, and compareTo.
+
+ @author arpeet barvalia, jonathan john
+ */
 
 public class Date implements Comparable<Date> {
     private int year;
@@ -23,20 +31,33 @@ public class Date implements Comparable<Date> {
     public static final int FEBRUARYDAYS = 28;
     public static final int FEBRUARYLEAP = 29;
 
-
+    /**
+     * Initializes an Date Object with the current Date
+     */
     public Date() {
         Calendar today = Calendar.getInstance();
         year = today.get(Calendar.YEAR);
         month = today.get(Calendar.MONTH) + 1; 
         day = today.get(Calendar.DAY_OF_MONTH);
     }
-
+    /**
+     * Initializes an Date Object with the following 3 parameters.
+     *
+     * @param year int year
+     * @param month int month
+     * @param day int day
+     */
     public Date(int year, int month, int day) {
         this.year = year;
         this.month = month;
         this.day = day;
     }
 
+    /**
+     * Initializes an Date Object with the following parameter.
+     *
+     * @param date date Object
+     */   
     public Date(Date date) {
         this.year = date.year;
         this.month = date.month;
