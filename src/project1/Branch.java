@@ -41,4 +41,8 @@ public enum Branch {
         return zip;
     }
 
+    public String getBranchName(){
+        return this.name();
+    }
+
 }

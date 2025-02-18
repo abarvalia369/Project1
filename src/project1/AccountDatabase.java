@@ -157,14 +157,82 @@ public class AccountDatabase {
         this.archive.print();
     }//print closed accounts
 
+
+    //For each sorting method, we used a insertion sort, as it is an in-position sorting method and we used the object of interest as the first 
+    //comparison while including the account Number to account for ties. 
     public void printByBranch() {
-
+        if(this.size == 0) {
+            System.out.println("Account database is empty!");
+            return;
+        }
+        for (int i = 1; i < size; ++i) {
+            Account insert = accounts[i];
+            int pointer = i - 1;
+            while (pointer >= 0 && (accounts[pointer].getNumber().getBranch().getBranchName() + accounts[pointer].getNumber()).compareTo(insert.getNumber().getBranch().getBranchName() + insert.getNumber()) > 0) {
+                accounts[pointer + 1] = accounts[pointer];
+                pointer--;
+            }
+            accounts[pointer + 1] = insert;
+        }
+        System.out.println("*List of accounts in the account database.");
+        for(int k = 0; k < size; k++) {
+                if (accounts[k] != null) System.out.println(this.accounts[k].toString());
+        }
+        System.out.println("*end of list.");
     }
+    
     public void printByHolder() {
-
+        if(this.size == 0) {
+            System.out.println("Account database is empty!");
+            return;
+        }
+        for (int i = 1; i < size; ++i) {
+            Account insert = accounts[i];
+            int pointer = i - 1;
+            while (pointer >= 0 && (accounts[pointer].getHolder().toString() + accounts[pointer].getNumber()).compareTo(insert.getHolder().toString() + insert.getNumber()) > 0) {
+                accounts[pointer + 1] = accounts[pointer];
+                pointer--;
+            }
+            accounts[pointer + 1] = insert;
+        }
+        System.out.println("*List of accounts in the account database.");
+        for(int k = 0; k < size; k++) {
+                if (accounts[k] != null) System.out.println(this.accounts[k].toString());
+        }
+        System.out.println("*end of list.");
     }
+
     public void printByType() {
-        
+        if(this.size == 0) {
+            System.out.println("Account database is empty!");
+            return;
+        }
+        for (int i = 1; i < size; ++i) {
+            Account insert = accounts[i];
+            int pointer = i - 1;
+            while (pointer >= 0 && (accounts[pointer].getNumber().getAccountType().getCode() + accounts[pointer].getNumber()).compareTo(insert.getNumber().getAccountType().getCode() + insert.getNumber()) > 0) {
+                accounts[pointer + 1] = accounts[pointer];
+                pointer--;
+            }
+            accounts[pointer + 1] = insert;
+        }
+        System.out.println("*List of accounts in the account database.");
+        for(int k = 0; k < size; k++) {
+                if (this.accounts[k] != null) System.out.println(this.accounts[k].toString());
+        }
+        System.out.println("*end of list.");
+    }
+
+    public void printOrder() {
+        if(this.size == 0) {
+            System.out.println("Account database is empty!");
+            return;
+        }
+        System.out.println("*List of accounts in the account database.");
+        for(int k = 0; k < size; k++) {
+                if (this.accounts[k] != null) System.out.println(this.accounts[k].toString());
+        }
+        System.out.println("*end of list.");
     }
 
     public static void main(String[] args) {
@@ -200,6 +268,10 @@ public class AccountDatabase {
         acctDatabase.add(acct7);
 
         System.out.println(acct3.toString());
+        acctDatabase.printOrder();
+        acctDatabase.printByHolder();
+        acctDatabase.printByBranch();
+        acctDatabase.printByType();
 
     }
 
