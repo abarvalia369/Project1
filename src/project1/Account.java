@@ -1,5 +1,5 @@
 package project1;
-
+import java.lang.*;
 /**
  Account class for RU Bank project.
  Represents a bank account with an account number, holder profile, and balance.
@@ -81,7 +81,7 @@ public class Account implements Comparable<Account> {
         }
         return false;
     }
-s
+
     /**
      * A method returns a textual representation of an account in the following format.
      * Format: Account#[200017410] Holder[John Doe 2/19/2000] Balance[$600.00] Branch[BRIDGEWATER]

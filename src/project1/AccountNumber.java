@@ -56,7 +56,7 @@ public class AccountNumber implements Comparable<AccountNumber> {
 
 
     @Override
-    public boolean isEqual(Object obj){
+    public boolean equals(Object obj){
         if( obj instanceof AccountNumber other ){
             return this.toString().equals(other.toString());
         }
@@ -65,7 +65,7 @@ public class AccountNumber implements Comparable<AccountNumber> {
 
     @Override
     public String toString(){
-        return Branch.getBranchCode() + type.getCode() + number;
+        return branch.getBranchCode() + type.getCode() + number;
     }
 
     @Override
