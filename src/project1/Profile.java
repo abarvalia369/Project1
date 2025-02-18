@@ -127,7 +127,7 @@ public class Profile implements Comparable<Profile>{
     public static void main(String[] args) {
         //Different names
         Profile p1 = new Profile("Jonathan", "John", 2004, 5, 4);
-        Profile p2 = new Profile("Katlen", "Weng", 2003, 5, 22);
+        Profile p2 = new Profile("Nikhil", "Hirpara", 2003, 5, 22);
         System.out.println("Test Case 1 (Different Names): " + p1.compareTo(p2)); // Expected: -1 (1st)
 
         //Different first names
