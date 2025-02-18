@@ -157,6 +157,16 @@ public class AccountDatabase {
         this.archive.print();
     }//print closed accounts
 
+    public void printByBranch() {
+
+    }
+    public void printByHolder() {
+
+    }
+    public void printByType() {
+        
+    }
+
     public static void main(String[] args) {
         AccountNumber acctnum1 = new AccountNumber(Branch.Bridgewater, AccountType.RegularSavings);
         AccountNumber acctnum2 = new AccountNumber(Branch.Bridgewater, AccountType.Checking);

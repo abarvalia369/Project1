@@ -42,6 +42,16 @@ public class Profile implements Comparable<Profile>{
         this.fname = fname;
     }
 
+    public static boolean isAdult(Date dob){
+        if (!dob.isValid()) {
+            return false;
+        }
+        Date today = new Date();
+        Date adult = new Date(today.getYear() - 18, today.getMonth(), today.getDay());
+
+        return dob.compareTo(adult) <= 0; 
+    }
+
     @Override
     public String toString() {
         return fname + " " + lname + " " + dob.toString();
@@ -125,6 +135,13 @@ public class Profile implements Comparable<Profile>{
         Profile p14 = new Profile("Jonathan", "John", test);
         Profile p15 = new Profile("Jonathan", "John", 2004, 05, 04);
         System.out.println("Test Case 9(Different Constructor): " + p14.compareTo(p15)); // Expected: 1 (3rd)
+
+        //Are they old enough?
+        Date dob1 = new Date(2004, 05, 04);
+        Date dob2 = new Date(2010, 05, 04);
+        System.out.println(isAdult(dob1)); 
+        System.out.println(isAdult(dob2));
+        
 
     }
 }
