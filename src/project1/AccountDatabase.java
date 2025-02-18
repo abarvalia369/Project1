@@ -56,8 +56,8 @@ public class AccountDatabase {
     }
 
     private void grow() {
-        int newSize = this.getSize() + GROW; 
-        Account[] temp = new Account[newSize];
+        int newCap = this.accounts.length + GROW; 
+        Account[] temp = new Account[newCap];
 
         for (int i = 0; i < accounts.length; i++) { 
             temp[i] = this.accounts[i];
