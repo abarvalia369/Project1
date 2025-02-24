@@ -33,8 +33,8 @@ public class TransactionManager {
                 continue;
             }
 
-            StringTokenizer token = new StringTokenizer( commandLine );
-            String command = token.nextToken();
+            StringTokenizer tokens = new StringTokenizer( commandLine );
+            String command = tokens.nextToken();
 
             switch (command){
                 case "O":
