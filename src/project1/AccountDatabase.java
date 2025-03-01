@@ -54,7 +54,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of accountNumber String
      *
-     * @param account Account that is being searched for in array accounts
+     * @param String accountNumber that is being searched for in array accounts
      * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
      */
     private int find(String accountNumber) {
@@ -172,7 +172,7 @@ public class AccountDatabase {
      */
     public void remove(Account account) {
         if (this.contains(account)) {
-            this.archive.add(this.accounts[this.find(account)]);
+            this.archive.add(this.accounts[this.find(account)], new Date());
             this.accounts[this.find(account)] = this.accounts[this.size - 1];
             this.accounts[this.size - 1] = null;
             this.setSize(this.size -1);
