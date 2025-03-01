@@ -54,7 +54,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of accountNumber String
      *
-     * @param String accountNumber that is being searched for in array accounts
+     * @param accountNumber String that is being searched for in array accounts
      * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
      */
     private int find(String accountNumber) {
@@ -71,7 +71,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber 
      *
-     * @param account Account that is being searched for in array accounts
+     * @param accountNumber AccountNumber that is being searched for in array accounts
      * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
      */
     private int find(AccountNumber accountNumber){
@@ -115,7 +115,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber, returning it's status
      *
-     * @param account Account that is being searched for in array accounts
+     * @param accountNumber AccountNumber that is being searched for in array accounts
      * @return returns a boolean on whether or not the account can be found within the array accounts. 
      */
     public boolean contains(AccountNumber accountNumber){
@@ -128,7 +128,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of String ccountNumber, returning it's status
      *
-     * @param account Account that is being searched for in array accounts
+     * @param accountNumber String that is being searched for in array accounts
      * @return returns a boolean on whether or not the account can be found within the array accounts. 
      */
     public boolean contains(String accountNumber){
