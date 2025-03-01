@@ -1,5 +1,7 @@
 package project1;
 
+import util.Date;
+
 /**
  * A class that implements a linked list data structure to hold a list of closed accounts.
  * Uses an AccountNode(class, private or public) for nodes of the linked list.
