@@ -28,6 +28,53 @@ public class AccountNumber implements Comparable<AccountNumber> {
         this.number = randomNumber();
         //4 digit number with leading zeroes instead of number from 1000-9999 for the serial number
     }
+    /**
+     *  Constructor with 1 parameter.
+     * @param accountNumber the 9-digit number in string form of the new AccountNumber object.
+     */
+    public AccountNumber(String accountNumber){
+        switch (accountNumber.substring(0,3)) {
+            case "100":
+                this.branch = Branch.Edison;
+                break;
+            case "200":
+                this.branch = Branch.Bridgewater;
+                break;
+            case "300":
+                this.branch = Branch.Princeton;
+                break;
+            case "400":
+                this.branch = Branch.Piscataway;
+                break;
+            case "500":
+                this.branch = Branch.Warren;
+                break;
+        }
+
+        switch (accountNumber.substring(3,5)) {
+            case "01":
+                this.type = AccountType.Checking;
+                break;
+            case "02":
+                this.type = AccountType.RegularSavings;
+                break;
+            case "03":
+                this.type = AccountType.MoneyMarketSavings;
+                break;
+        }
+        this.number = accountNumber.substring(5);
+    }
+
+    /**
+     * Copy constructor to clone an AccountNumber object.
+     * @param accountNumber the AccountNumber object containing the data to be cloned.
+     */
+    public AccountNumber(AccountNumber accountNumber) {
+        this.branch = accountNumber.branch;
+        this.type = accountNumber.type;
+        this.number = accountNumber.number;
+    }
+
 
     /**
      * Generates a random 4-digit number without adding an instance variable.

@@ -125,6 +125,8 @@ public class AccountDatabase {
         return false;
     } 
 
+
+
     /**
      * A search method that traverses accounts in search for specfic account by reference of String ccountNumber, returning it's status
      *
@@ -182,6 +184,30 @@ public class AccountDatabase {
         }
     }
 
+    public void remove(String accountNumber) {
+        int index = this.find(accountNumber);
+        if (index != -1)
+        {
+            this.remove(accounts[index]);
+        }
+        else
+            return;
+    }
+
+    public void remove(Profile profile) {
+        int i = 0;
+        // We'll iterate from i=0 to i < size. Each time we remove an account, size shrinks by 1.
+        while (i < this.size) {
+            if (this.accounts[i].getHolder().equals(profile)) {
+                // remove(accounts[i]) shifts the last account into position i and decrements size
+                this.remove(this.accounts[i]);
+                // do NOT increment i, because we want to check the new account that got shifted into i
+            } else {
+                i++;
+            }
+        }
+    }
+
     /**
      * A method for subtracting an ammount ot the balance of an Account
      *
@@ -210,7 +236,7 @@ public class AccountDatabase {
     }
         
     /**
-     * A method for adding an ammount to the balance of an Account
+     * A method for adding an amount to the balance of an Account
      *
      * @param number AccountNumber of the account that is being deposited to
      * @param amount The amount of money client wants to deposit
