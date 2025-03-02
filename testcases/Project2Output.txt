@@ -1,0 +1,473 @@
+Accounts in "accounts.txt" loaded to the database.
+Transaction Manager is running.
+
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+P command is deprecated!
+Processing "activities.txt"...
+200017410::2/2/2025::BRIDGEWATER[ATM]::deposit::$1,000.00
+200017410::2/2/2025::PISCATAWAY[ATM]::deposit::$1,000.00
+200017410::2/3/2025::PRINCETON[ATM]::deposit::$1,000.00
+200017410::2/3/2025::EDISON[ATM]::deposit::$1,000.00
+200017410::2/4/2025::BRIDGEWATER[ATM]::deposit::$1,000.00
+200017410::2/5/2025::EDISON[ATM]::deposit::$1,000.00
+200017410::2/6/2025::EDISON[ATM]::deposit::$1,000.00
+200017410::2/8/2025::BRIDGEWATER[ATM]::withdrawal::$500.00
+200017410::2/10/2025::EDISON[ATM]::withdrawal::$500.00
+200017410::2/10/2025::BRIDGEWATER[ATM]::withdrawal::$500.00
+200017410::2/10/2025::PISCATAWAY[ATM]::withdrawal::$500.00
+200017410::2/10/2025::WARREN[ATM]::withdrawal::$500.00
+200017410::2/10/2025::PISCATAWAY[ATM]::withdrawal::$500.00
+100024566::2/1/2025::WARREN[ATM]::withdrawal::$100.00
+300019048::2/2/2025::PRINCETON[ATM]::deposit::$300.00
+500011866::2/2/2025::EDISON[ATM]::withdrawal::$150.00
+100026682::2/3/2025::EDISON[ATM]::deposit::$400.00
+400027003::2/3/2025::WARREN[ATM]::deposit::$200.00
+200037979::2/5/2025::PRINCETON[ATM]::withdrawal::$500.00
+300031134::2/7/2025::WARREN[ATM]::withdrawal::$1,000.00
+300031134::2/7/2025::WARREN[ATM]::withdrawal::$1,000.00
+300049232::2/7/2025::WARREN[ATM]::deposit::$200.00
+Account activities in "activities.txt" processed.
+John Doe already has a CHECKING account.
+DOB invalid: 0/19/2000 not a valid calendar date!
+DOB invalid: 13/19/2000 not a valid calendar date!
+DOB invalid: 2/29/1999 not a valid calendar date!
+DOB invalid: 6/31/2000 not a valid calendar date!
+DOB invalid: 8/32/2000 not a valid calendar date!
+DOB invalid: 8/0/2000 not a valid calendar date!
+checkng - invalid account type.
+bridgwater - invalid branch.
+Missing data tokens for opening an account.
+Not eligible to open: 3/28/2007 under 18.
+DOB invalid: 2/19/2026 cannot be today or a future day.
+Initial deposit cannot be 0 or negative.
+For input string: "abc" - not a valid amount.
+Initial deposit cannot be 0 or negative.
+John Doe already has a CHECKING account.
+John Doe already has a SAVINGS account.
+Minimum of $2,000 to open a Money Market account.
+John Doe already has a MONEY_MARKET account.
+john doe already has a SAVINGS account.
+DOB invalid: 2/29/2002 not a valid calendar date!
+duke ellington already has a MONEY_MARKET account.
+Missing data tokens for opening an account.
+Not eligible to open: 1/2/2001 over 24.
+COLLEGE_CHECKING account 300047936 has been opened.
+Amy Lin already has a COLLEGE_CHECKING account.
+Minimum of $1,000 to open a Certificate Deposit account.
+0 is not a valid term.
+5 is not a valid term.
+8 is not a valid term.
+11 is not a valid term.
+CD account 300059991 has been opened.
+CD account 300057836 has been opened.
+CD account 300050863 has been opened.
+CD account 300058091 has been opened.
+-100.0 - deposit amount cannot be 0 or negative.
+0.0 - deposit amount cannot be 0 or negative.
+Missing data tokens for the deposit.
+For input string: "abc" - not a valid amount.
+400043095 does not exist.
+$100.00 deposited to 400043688
+$100.00 deposited to 300023147
+$100.00 deposited to 400039714
+$100.00 deposited to 400012615
+-100.0 withdrawal amount cannot be 0 or negative.
+0.0 withdrawal amount cannot be 0 or negative.
+Missing data tokens for the withdrawal.
+For input string: "ABC" - not a valid amount.
+$100.00 withdrawn from 200030432
+200030432 balance below $2,000 - $500.00 withdrawn from 200030432
+200030432 balance below $2,000 - withdrawing $2,000.00 - insufficient funds.
+200030432 balance below $2,000 - $200.00 withdrawn from 200030432
+200030432 balance below $2,000 - $200.00 withdrawn from 200030432
+200030432 balance below $2,000 - $200.00 withdrawn from 200030432
+$100.00 withdrawn from 200032742
+$100.00 withdrawn from 200032742
+$100.00 withdrawn from 200032742
+$3,000.00 deposited to 200032742
+$1,200.00 withdrawn from 300033343
+500037458 balance below $2,000 - $1,600.00 withdrawn from 500037458
+$400.00 withdrawn from 100026682
+$400.00 withdrawn from 300019048
+300045089 does not exist.
+$700.00 withdrawn from 400027003
+$700.00 withdrawn from 500024127
+$300.00 withdrawn from 400039714
+
+*List of accounts ordered by account holder and number.
+Account#[200051888] Holder[Jane Anderson 11/5/2003] Balance[$3,000.00] Branch[BRIDGEWATER] Term[12] Date opened[3/28/2024] Maturity date[3/28/2025]
+Account#[200052381] Holder[Jane Anderson 11/5/2003] Balance[$5,000.00] Branch[BRIDGEWATER] Term[3] Date opened[2/1/2025] Maturity date[5/1/2025]
+Account#[200056189] Holder[Jane Anderson 11/5/2003] Balance[$2,000.00] Branch[BRIDGEWATER] Term[9] Date opened[7/31/2024] Maturity date[4/30/2025]
+Account#[400043688] Holder[Jane Anderson 11/5/2003] Balance[$900.99] Branch[PISCATAWAY] Campus[NEW_BRUNSWICK]
+Account#[200037979] Holder[Roy Brooks 2/28/2002] Balance[$5,000.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[1]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$5,600.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[3]
+Account#[100024566] Holder[Jason Brown 4/1/1990] Balance[$200.00] Branch[EDISON]
+Account#[300058091] Holder[Jason Brown 3/31/1998] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/14/2025] Maturity date[2/14/2026]
+Account#[400012615] Holder[Jason Brown 3/31/1998] Balance[$1,300.00] Branch[PISCATAWAY]
+Account#[400039714] Holder[Jason Brown 3/31/1998] Balance[$4,900.00] Branch[PISCATAWAY] Withdrawal[1]
+Account#[100026682] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100053013] Holder[Jane Doe 11/2/2002] Balance[$3,500.00] Branch[EDISON] Term[12] Date opened[2/3/2024] Maturity date[2/3/2025]
+Account#[100019464] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[100023095] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON] [LOYAL]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$4,500.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$1,000.00] Branch[BRIDGEWATER] [LOYAL]
+Account#[200030432] Holder[John Doe 2/19/2000] Balance[$1,300.00] Branch[BRIDGEWATER] Withdrawal[5]
+Account#[100027432] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[300031134] Holder[duke ellington 11/2/2002] Balance[$1,200.00] Branch[PRINCETON] Withdrawal[2]
+Account#[300033343] Holder[Eric Johnson 8/8/1999] Balance[$3,300.00] Branch[PRINCETON] Withdrawal[1]
+Account#[300049232] Holder[April Lim 8/15/2004] Balance[$500.89] Branch[PRINCETON] Campus[NEWARK]
+Account#[300047936] Holder[Amy Lin 1/2/2002] Balance[$550.00] Branch[PRINCETON] Campus[NEWARK]
+Account#[300057836] Holder[Amy Lin 1/2/2002] Balance[$3,000.00] Branch[PRINCETON] Term[6] Date opened[2/14/2025] Maturity date[8/14/2025]
+Account#[300059991] Holder[Amy Lin 1/2/2002] Balance[$1,000.00] Branch[PRINCETON] Term[3] Date opened[2/14/2025] Maturity date[5/14/2025]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$300.00] Branch[WARREN]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$350.00] Branch[WARREN] [LOYAL]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$200.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,600.00] Branch[PRINCETON] [LOYAL]
+Account#[300050863] Holder[April March 1/15/1987] Balance[$2,000.00] Branch[PRINCETON] Term[9] Date opened[2/14/2025] Maturity date[11/14/2025]
+Account#[300053394] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/1/2024] Maturity date[2/1/2025]
+Account#[300055559] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[6/15/2024] Maturity date[6/15/2025]
+Account#[500051126] Holder[April March 1/15/1987] Balance[$8,000.00] Branch[WARREN] Term[6] Date opened[8/8/2024] Maturity date[2/8/2025]
+Account#[400045089] Holder[Andrew Patel 6/9/2002] Balance[$1,100.00] Branch[PISCATAWAY] Campus[CAMDEN]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$700.00] Branch[PISCATAWAY]
+Account#[500037458] Holder[chris young 9/20/2004] Balance[$1,900.00] Branch[WARREN] Withdrawal[1]
+*end of list.
+
+
+*List of accounts ordered by account type and number.
+Account Type: CHECKING
+Account#[100019464] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$4,500.00] Branch[BRIDGEWATER]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$200.00] Branch[PRINCETON]
+Account#[400012615] Holder[Jason Brown 3/31/1998] Balance[$1,300.00] Branch[PISCATAWAY]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$300.00] Branch[WARREN]
+Account Type: SAVINGS
+Account#[100023095] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON] [LOYAL]
+Account#[100024566] Holder[Jason Brown 4/1/1990] Balance[$200.00] Branch[EDISON]
+Account#[100026682] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100027432] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$1,000.00] Branch[BRIDGEWATER] [LOYAL]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,600.00] Branch[PRINCETON] [LOYAL]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$700.00] Branch[PISCATAWAY]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$350.00] Branch[WARREN] [LOYAL]
+Account Type: MONEY_MARKET
+Account#[200030432] Holder[John Doe 2/19/2000] Balance[$1,300.00] Branch[BRIDGEWATER] Withdrawal[5]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$5,600.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[3]
+Account#[200037979] Holder[Roy Brooks 2/28/2002] Balance[$5,000.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[1]
+Account#[300031134] Holder[duke ellington 11/2/2002] Balance[$1,200.00] Branch[PRINCETON] Withdrawal[2]
+Account#[300033343] Holder[Eric Johnson 8/8/1999] Balance[$3,300.00] Branch[PRINCETON] Withdrawal[1]
+Account#[400039714] Holder[Jason Brown 3/31/1998] Balance[$4,900.00] Branch[PISCATAWAY] Withdrawal[1]
+Account#[500037458] Holder[chris young 9/20/2004] Balance[$1,900.00] Branch[WARREN] Withdrawal[1]
+Account Type: COLLEGE_CHECKING
+Account#[300047936] Holder[Amy Lin 1/2/2002] Balance[$550.00] Branch[PRINCETON] Campus[NEWARK]
+Account#[300049232] Holder[April Lim 8/15/2004] Balance[$500.89] Branch[PRINCETON] Campus[NEWARK]
+Account#[400043688] Holder[Jane Anderson 11/5/2003] Balance[$900.99] Branch[PISCATAWAY] Campus[NEW_BRUNSWICK]
+Account#[400045089] Holder[Andrew Patel 6/9/2002] Balance[$1,100.00] Branch[PISCATAWAY] Campus[CAMDEN]
+Account Type: CD
+Account#[100053013] Holder[Jane Doe 11/2/2002] Balance[$3,500.00] Branch[EDISON] Term[12] Date opened[2/3/2024] Maturity date[2/3/2025]
+Account#[200051888] Holder[Jane Anderson 11/5/2003] Balance[$3,000.00] Branch[BRIDGEWATER] Term[12] Date opened[3/28/2024] Maturity date[3/28/2025]
+Account#[200052381] Holder[Jane Anderson 11/5/2003] Balance[$5,000.00] Branch[BRIDGEWATER] Term[3] Date opened[2/1/2025] Maturity date[5/1/2025]
+Account#[200056189] Holder[Jane Anderson 11/5/2003] Balance[$2,000.00] Branch[BRIDGEWATER] Term[9] Date opened[7/31/2024] Maturity date[4/30/2025]
+Account#[300050863] Holder[April March 1/15/1987] Balance[$2,000.00] Branch[PRINCETON] Term[9] Date opened[2/14/2025] Maturity date[11/14/2025]
+Account#[300053394] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/1/2024] Maturity date[2/1/2025]
+Account#[300055559] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[6/15/2024] Maturity date[6/15/2025]
+Account#[300057836] Holder[Amy Lin 1/2/2002] Balance[$3,000.00] Branch[PRINCETON] Term[6] Date opened[2/14/2025] Maturity date[8/14/2025]
+Account#[300058091] Holder[Jason Brown 3/31/1998] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/14/2025] Maturity date[2/14/2026]
+Account#[300059991] Holder[Amy Lin 1/2/2002] Balance[$1,000.00] Branch[PRINCETON] Term[3] Date opened[2/14/2025] Maturity date[5/14/2025]
+Account#[500051126] Holder[April March 1/15/1987] Balance[$8,000.00] Branch[WARREN] Term[6] Date opened[8/8/2024] Maturity date[2/8/2025]
+*end of list.
+
+
+*List of accounts ordered by branch location (county, city).
+County: Mercer
+Account#[300019048] Holder[April March 1/15/1987] Balance[$200.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,600.00] Branch[PRINCETON] [LOYAL]
+Account#[300031134] Holder[duke ellington 11/2/2002] Balance[$1,200.00] Branch[PRINCETON] Withdrawal[2]
+Account#[300033343] Holder[Eric Johnson 8/8/1999] Balance[$3,300.00] Branch[PRINCETON] Withdrawal[1]
+Account#[300047936] Holder[Amy Lin 1/2/2002] Balance[$550.00] Branch[PRINCETON] Campus[NEWARK]
+Account#[300049232] Holder[April Lim 8/15/2004] Balance[$500.89] Branch[PRINCETON] Campus[NEWARK]
+Account#[300050863] Holder[April March 1/15/1987] Balance[$2,000.00] Branch[PRINCETON] Term[9] Date opened[2/14/2025] Maturity date[11/14/2025]
+Account#[300053394] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/1/2024] Maturity date[2/1/2025]
+Account#[300055559] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[6/15/2024] Maturity date[6/15/2025]
+Account#[300057836] Holder[Amy Lin 1/2/2002] Balance[$3,000.00] Branch[PRINCETON] Term[6] Date opened[2/14/2025] Maturity date[8/14/2025]
+Account#[300058091] Holder[Jason Brown 3/31/1998] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/14/2025] Maturity date[2/14/2026]
+Account#[300059991] Holder[Amy Lin 1/2/2002] Balance[$1,000.00] Branch[PRINCETON] Term[3] Date opened[2/14/2025] Maturity date[5/14/2025]
+County: Middlesex
+Account#[100019464] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON]
+Account#[100023095] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON] [LOYAL]
+Account#[100053013] Holder[Jane Doe 11/2/2002] Balance[$3,500.00] Branch[EDISON] Term[12] Date opened[2/3/2024] Maturity date[2/3/2025]
+Account#[100024566] Holder[Jason Brown 4/1/1990] Balance[$200.00] Branch[EDISON]
+Account#[100026682] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON]
+Account#[100027432] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[400039714] Holder[Jason Brown 3/31/1998] Balance[$4,900.00] Branch[PISCATAWAY] Withdrawal[1]
+Account#[400043688] Holder[Jane Anderson 11/5/2003] Balance[$900.99] Branch[PISCATAWAY] Campus[NEW_BRUNSWICK]
+Account#[400045089] Holder[Andrew Patel 6/9/2002] Balance[$1,100.00] Branch[PISCATAWAY] Campus[CAMDEN]
+Account#[400012615] Holder[Jason Brown 3/31/1998] Balance[$1,300.00] Branch[PISCATAWAY]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$700.00] Branch[PISCATAWAY]
+County: Somerset
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$5,600.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[3]
+Account#[200051888] Holder[Jane Anderson 11/5/2003] Balance[$3,000.00] Branch[BRIDGEWATER] Term[12] Date opened[3/28/2024] Maturity date[3/28/2025]
+Account#[200052381] Holder[Jane Anderson 11/5/2003] Balance[$5,000.00] Branch[BRIDGEWATER] Term[3] Date opened[2/1/2025] Maturity date[5/1/2025]
+Account#[200056189] Holder[Jane Anderson 11/5/2003] Balance[$2,000.00] Branch[BRIDGEWATER] Term[9] Date opened[7/31/2024] Maturity date[4/30/2025]
+Account#[200037979] Holder[Roy Brooks 2/28/2002] Balance[$5,000.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[1]
+Account#[200030432] Holder[John Doe 2/19/2000] Balance[$1,300.00] Branch[BRIDGEWATER] Withdrawal[5]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$1,000.00] Branch[BRIDGEWATER] [LOYAL]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$4,500.00] Branch[BRIDGEWATER]
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$350.00] Branch[WARREN] [LOYAL]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$300.00] Branch[WARREN]
+Account#[500037458] Holder[chris young 9/20/2004] Balance[$1,900.00] Branch[WARREN] Withdrawal[1]
+Account#[500051126] Holder[April March 1/15/1987] Balance[$8,000.00] Branch[WARREN] Term[6] Date opened[8/8/2024] Maturity date[2/8/2025]
+*end of list.
+
+Closing account 100026682
+--interest earned: $0.49
+100026682 account does not exist.
+Missing data for closing an account.
+Closing account 100019464
+--interest earned: $0.23
+Closing accounts for Kate Lindsey 8/31/2001
+--500024127 interest earned: $0.32
+--500011866 interest earned: $0.15
+All accounts for Kate Lindsey 8/31/2001 are closed and moved to archive.
+Kate Lindsey 8/31/2001 does not have any accounts in the database.
+SAVINGS account 100023461 has been opened.
+Closing accounts for Jason Brown 3/31/1998
+--300058091 interest earned: $0.08
+  [penalty] $0.01
+--400039714 interest earned: $6.58
+--400012615 interest earned: $0.75
+All accounts for Jason Brown 3/31/1998 are closed and moved to archive.
+Jason Brown 3/31/1998 does not have any accounts in the database.
+Closing account 300033343
+--interest earned: $2.85
+Closing account 300053394
+--interest earned: $41.10
+Closing accounts for Jane Anderson 11/5/2003
+--400043688 interest earned: $0.59
+--200051888 interest earned: $93.78
+  [penalty] $9.38
+--200052381 interest earned: $6.58
+  [penalty] $0.66
+--200056189 interest earned: $35.79
+  [penalty] $3.58
+All accounts for Jane Anderson 11/5/2003 are closed and moved to archive.
+Closing account 500051126
+--interest earned: $135.34
+Closing account 300055559
+--interest earned: $21.64
+--penalty: $2.16
+
+*List of closed accounts in the archive.
+Account#[300055559] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[6/15/2024] Maturity date[6/15/2025] Closed[2/12/2025]
+Account#[500051126] Holder[April March 1/15/1987] Balance[$8,000.00] Branch[WARREN] Term[6] Date opened[8/8/2024] Maturity date[2/8/2025] Closed[2/13/2025]
+Account#[200051888] Holder[Jane Anderson 11/5/2003] Balance[$3,000.00] Branch[BRIDGEWATER] Term[12] Date opened[3/28/2024] Maturity date[3/28/2025] Closed[2/16/2025]
+Account#[200052381] Holder[Jane Anderson 11/5/2003] Balance[$5,000.00] Branch[BRIDGEWATER] Term[3] Date opened[2/1/2025] Maturity date[5/1/2025] Closed[2/16/2025]
+Account#[200056189] Holder[Jane Anderson 11/5/2003] Balance[$2,000.00] Branch[BRIDGEWATER] Term[9] Date opened[7/31/2024] Maturity date[4/30/2025] Closed[2/16/2025]
+Account#[400043688] Holder[Jane Anderson 11/5/2003] Balance[$900.99] Branch[PISCATAWAY] Campus[NEW_BRUNSWICK] Closed[2/16/2025]
+	[Activity]
+		2/14/2025::PISCATAWAY::deposit::$100.00
+Account#[300053394] Holder[April March 1/15/1987] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/1/2024] Maturity date[2/1/2025] Closed[2/9/2025]
+Account#[300033343] Holder[Eric Johnson 8/8/1999] Balance[$3,300.00] Branch[PRINCETON] Withdrawal[1] Closed[2/9/2025]
+	[Activity]
+		2/14/2025::PRINCETON::withdrawal::$1,200.00
+Account#[400012615] Holder[Jason Brown 3/31/1998] Balance[$1,300.00] Branch[PISCATAWAY] Closed[2/14/2025]
+	[Activity]
+		2/14/2025::PISCATAWAY::deposit::$100.00
+Account#[400039714] Holder[Jason Brown 3/31/1998] Balance[$4,900.00] Branch[PISCATAWAY] Withdrawal[1] Closed[2/14/2025]
+	[Activity]
+		2/14/2025::PISCATAWAY::deposit::$100.00
+		2/14/2025::PISCATAWAY::withdrawal::$300.00
+Account#[300058091] Holder[Jason Brown 3/31/1998] Balance[$1,000.00] Branch[PRINCETON] Term[12] Date opened[2/14/2025] Maturity date[2/14/2026] Closed[2/14/2025]
+Account#[500011866] Holder[Kate Lindsey 8/31/2001] Balance[$300.00] Branch[WARREN] Closed[2/12/2025]
+	[Activity]
+		2/2/2025::EDISON[ATM]::withdrawal::$150.00
+Account#[500024127] Holder[Kate Lindsey 8/31/2001] Balance[$350.00] Branch[WARREN] [LOYAL] Closed[2/12/2025]
+	[Activity]
+		2/14/2025::WARREN::withdrawal::$700.00
+Account#[100019464] Holder[John Doe 7/8/1999] Balance[$500.00] Branch[EDISON] Closed[2/11/2025]
+Account#[100026682] Holder[Jane Doe 11/2/2002] Balance[$800.00] Branch[EDISON] Closed[2/9/2025]
+	[Activity]
+		2/3/2025::EDISON[ATM]::deposit::$400.00
+		2/14/2025::EDISON::withdrawal::$400.00
+*end of list.
+
+
+*List of accounts ordered by account holder and number.
+Account#[200037979] Holder[Roy Brooks 2/28/2002] Balance[$5,000.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[1]
+Account#[200032742] Holder[Roy Brooks 11/2/2005] Balance[$5,600.00] Branch[BRIDGEWATER] [LOYAL] Withdrawal[3]
+Account#[100024566] Holder[Jason Brown 4/1/1990] Balance[$200.00] Branch[EDISON]
+Account#[100053013] Holder[Jane Doe 11/2/2002] Balance[$3,500.00] Branch[EDISON] Term[12] Date opened[2/3/2024] Maturity date[2/3/2025]
+Account#[100023095] Holder[John Doe 7/8/1999] Balance[$1,500.00] Branch[EDISON]
+Account#[200017410] Holder[John Doe 2/19/2000] Balance[$4,500.00] Branch[BRIDGEWATER]
+Account#[200026899] Holder[John Doe 2/19/2000] Balance[$1,000.00] Branch[BRIDGEWATER] [LOYAL]
+Account#[200030432] Holder[John Doe 2/19/2000] Balance[$1,300.00] Branch[BRIDGEWATER] Withdrawal[5]
+Account#[100027432] Holder[Duke Ellington 11/2/2002] Balance[$1,110.00] Branch[EDISON]
+Account#[300031134] Holder[duke ellington 11/2/2002] Balance[$1,200.00] Branch[PRINCETON] Withdrawal[2]
+Account#[300049232] Holder[April Lim 8/15/2004] Balance[$500.89] Branch[PRINCETON] Campus[NEWARK]
+Account#[300047936] Holder[Amy Lin 1/2/2002] Balance[$550.00] Branch[PRINCETON] Campus[NEWARK]
+Account#[300057836] Holder[Amy Lin 1/2/2002] Balance[$3,000.00] Branch[PRINCETON] Term[6] Date opened[2/14/2025] Maturity date[8/14/2025]
+Account#[300059991] Holder[Amy Lin 1/2/2002] Balance[$1,000.00] Branch[PRINCETON] Term[3] Date opened[2/14/2025] Maturity date[5/14/2025]
+Account#[100023461] Holder[Kate Lindsey 8/31/2001] Balance[$300.00] Branch[EDISON]
+Account#[300019048] Holder[April March 1/15/1987] Balance[$200.00] Branch[PRINCETON]
+Account#[300023147] Holder[April March 1/15/1987] Balance[$1,600.00] Branch[PRINCETON] [LOYAL]
+Account#[300050863] Holder[April March 1/15/1987] Balance[$2,000.00] Branch[PRINCETON] Term[9] Date opened[2/14/2025] Maturity date[11/14/2025]
+Account#[400045089] Holder[Andrew Patel 6/9/2002] Balance[$1,100.00] Branch[PISCATAWAY] Campus[CAMDEN]
+Account#[400027003] Holder[Chris Young 9/20/2004] Balance[$700.00] Branch[PISCATAWAY]
+Account#[500037458] Holder[chris young 9/20/2004] Balance[$1,900.00] Branch[WARREN] Withdrawal[1]
+*end of list.
+
+*Account statements by account holder.
+1.Roy Brooks 2/28/2002
+	[Account#] 200037979
+	[Activity]
+		2/5/2025::PRINCETON[ATM]::withdrawal::$500.00
+	[interest] $15.63 [Fee] $0.00
+	[Balance] $5,015.62
+
+2.Roy Brooks 11/2/2005
+	[Account#] 200032742
+	[Activity]
+		2/14/2025::BRIDGEWATER::withdrawal::$100.00
+		2/14/2025::BRIDGEWATER::withdrawal::$100.00
+		2/14/2025::BRIDGEWATER::withdrawal::$100.00
+		2/14/2025::BRIDGEWATER::deposit::$3,000.00
+	[interest] $17.50 [Fee] $0.00
+	[Balance] $5,617.50
+
+3.Jason Brown 4/1/1990
+	[Account#] 100024566
+	[Activity]
+		2/1/2025::WARREN[ATM]::withdrawal::$100.00
+	[interest] $0.42 [Fee] $25.00
+	[Balance] $175.42
+
+4.Jane Doe 11/2/2002
+	[Account#] 100053013
+	[interest] $11.67 [Fee] $0.00
+	[Balance] $3,511.67
+
+5.John Doe 7/8/1999
+	[Account#] 100023095
+	[interest] $3.12 [Fee] $0.00
+	[Balance] $1,503.12
+
+6.John Doe 2/19/2000
+	[Account#] 200017410
+	[Activity]
+		2/2/2025::BRIDGEWATER[ATM]::deposit::$1,000.00
+		2/2/2025::PISCATAWAY[ATM]::deposit::$1,000.00
+		2/3/2025::PRINCETON[ATM]::deposit::$1,000.00
+		2/3/2025::EDISON[ATM]::deposit::$1,000.00
+		2/4/2025::BRIDGEWATER[ATM]::deposit::$1,000.00
+		2/5/2025::EDISON[ATM]::deposit::$1,000.00
+		2/6/2025::EDISON[ATM]::deposit::$1,000.00
+		2/8/2025::BRIDGEWATER[ATM]::withdrawal::$500.00
+		2/10/2025::EDISON[ATM]::withdrawal::$500.00
+		2/10/2025::BRIDGEWATER[ATM]::withdrawal::$500.00
+		2/10/2025::PISCATAWAY[ATM]::withdrawal::$500.00
+		2/10/2025::WARREN[ATM]::withdrawal::$500.00
+		2/10/2025::PISCATAWAY[ATM]::withdrawal::$500.00
+	[interest] $5.62 [Fee] $0.00
+	[Balance] $4,505.62
+
+	[Account#] 200026899
+	[interest] $2.29 [Fee] $0.00
+	[Balance] $1,002.29
+
+	[Account#] 200030432
+	[Activity]
+		2/14/2025::BRIDGEWATER::withdrawal::$100.00
+		2/14/2025::BRIDGEWATER::withdrawal::$500.00
+		2/14/2025::BRIDGEWATER::withdrawal::$200.00
+		2/14/2025::BRIDGEWATER::withdrawal::$200.00
+		2/14/2025::BRIDGEWATER::withdrawal::$200.00
+	[interest] $3.79 [Fee] $35.00
+	[Balance] $1,268.79
+
+7.Duke Ellington 11/2/2002
+	[Account#] 100027432
+	[interest] $2.31 [Fee] $0.00
+	[Balance] $1,112.31
+
+	[Account#] 300031134
+	[Activity]
+		2/7/2025::WARREN[ATM]::withdrawal::$1,000.00
+		2/7/2025::WARREN[ATM]::withdrawal::$1,000.00
+	[interest] $3.50 [Fee] $25.00
+	[Balance] $1,178.50
+
+8.April Lim 8/15/2004
+	[Account#] 300049232
+	[Activity]
+		2/7/2025::WARREN[ATM]::deposit::$200.00
+	[interest] $0.63 [Fee] $0.00
+	[Balance] $501.52
+
+9.Amy Lin 1/2/2002
+	[Account#] 300047936
+	[interest] $0.69 [Fee] $0.00
+	[Balance] $550.69
+
+	[Account#] 300057836
+	[interest] $8.12 [Fee] $0.00
+	[Balance] $3,008.12
+
+	[Account#] 300059991
+	[interest] $2.50 [Fee] $0.00
+	[Balance] $1,002.50
+
+10.Kate Lindsey 8/31/2001
+	[Account#] 100023461
+	[interest] $0.62 [Fee] $25.00
+	[Balance] $275.62
+
+11.April March 1/15/1987
+	[Account#] 300019048
+	[Activity]
+		2/2/2025::PRINCETON[ATM]::deposit::$300.00
+		2/14/2025::PRINCETON::withdrawal::$400.00
+	[interest] $0.25 [Fee] $15.00
+	[Balance] $185.25
+
+	[Account#] 300023147
+	[Activity]
+		2/14/2025::PRINCETON::deposit::$100.00
+	[interest] $3.67 [Fee] $0.00
+	[Balance] $1,603.67
+
+	[Account#] 300050863
+	[interest] $5.83 [Fee] $0.00
+	[Balance] $2,005.83
+
+12.Andrew Patel 6/9/2002
+	[Account#] 400045089
+	[interest] $1.38 [Fee] $0.00
+	[Balance] $1,101.38
+
+13.Chris Young 9/20/2004
+	[Account#] 400027003
+	[Activity]
+		2/3/2025::WARREN[ATM]::deposit::$200.00
+		2/14/2025::PISCATAWAY::withdrawal::$700.00
+	[interest] $1.46 [Fee] $0.00
+	[Balance] $701.46
+
+	[Account#] 500037458
+	[Activity]
+		2/14/2025::WARREN::withdrawal::$1,600.00
+	[interest] $5.54 [Fee] $25.00
+	[Balance] $1,880.54
+
+*end of statements.
+
+Transaction Manager is terminated.
