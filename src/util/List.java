@@ -71,11 +71,11 @@ public class List<E> implements Iterable<E> {
     }
 
     public boolean isEmpty() {
-        return size == 0;
+        return this.size == 0;
     }
 
     public int size() {
-        return size;
+        return this.size;
     }
 
     @Override
@@ -100,7 +100,10 @@ public class List<E> implements Iterable<E> {
             }
         }
         return NOT_FOUND;
-    } //return the index of the object or return -1
+    } //return the index of the object
+
+
+    // or return -1
 
 
     private class ListIterator<E> implements Iterator<E> {
