@@ -1,4 +1,7 @@
 package project1;
+
+import util.Date;
+
 /**
  Account class for RU Bank project.
  Represents a bank account with an account number, holder profile, and balance.
@@ -54,7 +57,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of accountNumber String
      *
-     * @param account Account that is being searched for in array accounts
+     * @param accountNumber String that is being searched for in array accounts
      * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
      */
     private int find(String accountNumber) {
@@ -71,7 +74,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber 
      *
-     * @param account Account that is being searched for in array accounts
+     * @param accountNumber AccountNumber that is being searched for in array accounts
      * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
      */
     private int find(AccountNumber accountNumber){
@@ -115,7 +118,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber, returning it's status
      *
-     * @param account Account that is being searched for in array accounts
+     * @param accountNumber AccountNumber that is being searched for in array accounts
      * @return returns a boolean on whether or not the account can be found within the array accounts. 
      */
     public boolean contains(AccountNumber accountNumber){
@@ -130,7 +133,7 @@ public class AccountDatabase {
     /**
      * A search method that traverses accounts in search for specfic account by reference of String ccountNumber, returning it's status
      *
-     * @param account Account that is being searched for in array accounts
+     * @param accountNumber String that is being searched for in array accounts
      * @return returns a boolean on whether or not the account can be found within the array accounts. 
      */
     public boolean contains(String accountNumber){
@@ -174,7 +177,7 @@ public class AccountDatabase {
      */
     public void remove(Account account) {
         if (this.contains(account)) {
-            this.archive.add(this.accounts[this.find(account)]);
+            this.archive.add(this.accounts[this.find(account)], new Date());
             this.accounts[this.find(account)] = this.accounts[this.size - 1];
             this.accounts[this.size - 1] = null;
             this.setSize(this.size -1);

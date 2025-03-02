@@ -1,5 +1,7 @@
 package project1;
 
+import util.Date;
+
 /**
  * A class that implements a linked list data structure to hold a list of closed accounts.
  * Uses an AccountNode(class, private or public) for nodes of the linked list.
@@ -14,13 +16,20 @@ public class Archive {
      *
      */
     public static class AccountNode{
-        Account account;
-        AccountNode next;
+        private Account account;
+        private AccountNode next;
+        private Date close;
 
-        public AccountNode(Account account){
+        public AccountNode(Account account, Date close){
             this.account = account;
             this.next = null;
+            this.close = close;
         }
+
+        public Date getCloseDate() {
+            return close;
+        }
+
     }
 
     public AccountNode getFirst(){
@@ -32,8 +41,8 @@ public class Archive {
      *
      * @param account the account to add to the front of the linked list.
      */
-    public void add(Account account) {  //add to front of linked list
-        AccountNode node = new AccountNode(account);
+    public void add(Account account, Date close) {  //add to front of linked list
+        AccountNode node = new AccountNode(account, close);
         node.next = first;
         first = node;
     }
