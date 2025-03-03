@@ -60,7 +60,7 @@ public class List<E> implements Iterable<E> {
 
     public void remove(E e){
         if (this.contains(e)) {
-            this.objects[this.find(e)] = this.objects[this.size - 1];
+            this.objects[this.indexOf(e)] = this.objects[this.size - 1];
             this.objects[this.size - 1] = null;
             this.size--;
         }
