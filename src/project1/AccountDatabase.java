@@ -4,6 +4,7 @@ import util.Date;
 import util.List;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 
 /**
@@ -15,11 +16,10 @@ import java.io.IOException;
  @author arpeet barvalia, jonathan john
  */
 
-
 public class AccountDatabase extends List<Account>{
-    /* public static final int NOT_FOUND = -1;
+     public static final int NOT_FOUND = -1;
      public static final int GROW = 4;
-
+     /*
      private Account [] accounts;
      private int size; */
     private Archive archive; //a linked list of closed account
@@ -34,213 +34,26 @@ public class AccountDatabase extends List<Account>{
          */
         this.archive = new Archive();
     }
-/*
-    public int getSize(){
-        return size;
-    }
-
-    public void setSize(int newSize){
-        this.size = newSize;
-    }
-
-    public Account[] getAccounts(){
-        return accounts;
-    }
-
- */
-    /**
-     * A search method that traverses accounts in search for specfic account. 
-     *
-     * @param account Account that is being searched for in array accounts
-     * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
-     */
-
-    /*
-    private int find(Account account) {
-        for(int i = 0; i < accounts.length; i++){
-            if(this.accounts[i] != null){
-                if(this.accounts[i].equals(account)){
-                return i; 
-                }
-            }
-        }
-        return NOT_FOUND;
-    }
-
-     */
-    /**
-     * A search method that traverses accounts in search for specfic account by reference of accountNumber String
-     *
-     * @param accountNumber String that is being searched for in array accounts
-     * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
-     */
-    /*
-    private int find(String accountNumber) {
-        for(int i = 0; i < accounts.length; i++){
-            if(this.accounts[i] != null){
-                if(this.accounts[i].getNumber().equals(accountNumber)){
-                return i; 
-                }
-            }
-        }
-        return NOT_FOUND;
-    } //return the index or -1 not found.
-
-     */
-
-    /**
-     * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber 
-     *
-     * @param accountNumber AccountNumber that is being searched for in array accounts
-     * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
-     */
-    /*
-    private int find(AccountNumber accountNumber){
-        for(int i = 0; i < accounts.length; i++){
-            if(this.accounts[i] != null){
-                if(this.accounts[i].getNumber().equals(accountNumber)){
-                return i; 
-                }
-            }
-        }
-        return NOT_FOUND;
-    }
-     */
-    /**
-     * A method for increasing the capacity of the array accounts by 4 or GROW
-     */
-    /*
-    private void grow() {
-        int newCap = this.accounts.length + GROW; 
-        Account[] temp = new Account[newCap];
-
-        for (int i = 0; i < accounts.length; i++) { 
-            temp[i] = this.accounts[i];
-        }
-
-        this.accounts = temp; 
-    } //increase the array capacity by 4
-
-     */
-
-    /**
-     * A search method that traverses accounts in search for specfic account, returning it's status
-     *
-     * @param account Account that is being searched for in array accounts
-     * @return returns a boolean on whether or not the account can be found within the array accounts. 
-     */
-    /*
-    public boolean contains(Account account) {
-        if (this.find(account) != NOT_FOUND){
-            return true;
-        } 
-        return false; 
-    } //check before add/remove
-
-     */
-
-    /**
-     * A search method that traverses accounts in search for specfic account by reference of AccountNumber accountNumber, returning it's status
-     *
-     * @param accountNumber AccountNumber that is being searched for in array accounts
-     * @return returns a boolean on whether or not the account can be found within the array accounts. 
-     */
-    /*
-    public boolean contains(AccountNumber accountNumber){
-        if (this.find(accountNumber) != NOT_FOUND){
-            return true; 
-        }
-        return false;
-    }
-
-     */
-
-    /**
-     * A search method that traverses accounts in search for specfic account by reference of String ccountNumber, returning it's status
-     *
-     * @param accountNumber String that is being searched for in array accounts
-     * @return returns a boolean on whether or not the account can be found within the array accounts. 
-     */
-    /*
-    public boolean contains(String accountNumber){
-        if (this.find(accountNumber) != NOT_FOUND){
-            return true; 
-        }
-        return false;
-    }
-
-     */
-
-    /**
-     * A method for adding an Account to the Database
-     *
-     * @param account Account that is being added to database
-     */
-    /*
-    public void add(Account account) {
-        if(this.contains(account)){
-            return;
-        }
-        for(int i = 0; i < this.accounts.length; i++){
-            if(this.accounts[i] == null){
-                this.accounts[i] = account; 
-                this.setSize(this.size + 1);
-                return;
-            }
-        }
-        this.grow();
-        for(int j = 0; j < this.accounts.length; j++){
-            if(this.accounts[j] == null){
-                this.setSize(this.size + 1);
-                this.accounts[j] = account; 
-                return;
-            }
-        }
-
-    }
-
-     */
-
-    /**
-     * A method for removing the Account and replacing it with the last Account in the dataBase
-     *
-     * @param account Account that is being removed
-     */
-    /*
-    public void remove(Account account) {
-        if (this.contains(account)) {
-            this.archive.add(this.accounts[this.find(account)], new Date());
-            this.accounts[this.find(account)] = this.accounts[this.size - 1];
-            this.accounts[this.size - 1] = null;
-            this.setSize(this.size -1);
-        }
-        else{
-            return;
-        }
-    }
-
-     */
 
     /**
      * A method for subtracting an ammount ot the balance of an Account
      *
      * @param number AccountNumber of the account that is being withdrawn from
-     * @param amount The Ammount of money client wants to withdraw
-     * @return returns a boolean on whether or not the amount could be with drawn
+     * @param amount The Amount of money client wants to withdraw
+     * @return returns a boolean on whether the amount could be with drawn
      */
-    /*
     public boolean withdraw(AccountNumber number, double amount) {
-        if(this.find(number) == NOT_FOUND){
+        if(this.indexOf(number) == NOT_FOUND){
             return false; 
         }
-        int index = this.find(number);
-        double newBalance = this.accounts[index].getBalance() - amount; 
-        this.accounts[index].setBalance(newBalance);
+        int index = this.indexOf(number);
+        double newBalance = this.get(index).getBalance() - amount;
+        this.get(index).setBalance(newBalance);
         if(newBalance >= 2000.00){
             return true; 
         }
         else if(newBalance > 0.00){
-            this.accounts[index].getNumber().setAccountType(AccountType.RegularSavings);
+            this.get(index).getNumber().setAccountType(AccountType.RegularSavings);
             return true;
         }
         else{
@@ -249,7 +62,7 @@ public class AccountDatabase extends List<Account>{
 
     }
 
-     */
+
         
     /**
      * A method for adding an ammount to the balance of an Account
@@ -257,15 +70,15 @@ public class AccountDatabase extends List<Account>{
      * @param number AccountNumber of the account that is being deposited to
      * @param amount The amount of money client wants to deposit
      */
-    /*
+
     public void deposit(AccountNumber number, double amount) {
-        int index = find(number);
+        int index = indexOf(number);
         if (index != NOT_FOUND) {
-            double newBalance = this.accounts[index].getBalance() + amount; 
-            this.accounts[index].setBalance(newBalance);
+            double newBalance = this.get(index).getBalance() + amount;
+            this.get(index).setBalance(newBalance);
         }
     }
-     */
+
 
     /**
      * A method for printing the current archived accounts
@@ -275,15 +88,122 @@ public class AccountDatabase extends List<Account>{
     }
 
     public void printStatements() {
+        if (this.isEmpty()) {
+            System.out.println("Account Database is empty.");
+            return;
+        }
+
+        /*
+        for (int i = 0; i < this.size(); i++) {
+            Account account = this.get(i);
+            System.out.println("=== Account Statement ===");
+            System.out.println(account);
+            System.out.println("Recent Transactions:");
+            for (Activity activity : account.getActivities()) {
+                System.out.println(activity);
+            }
+            System.out.printf("Monthly Interest: %.2f\n", account.interest());
+            System.out.printf("Monthly Fee: %.2f\n", account.fee());
+            System.out.printf("Updated Balance: %.2f\n\n",
+                    account.getBalance() + account.interest() - account.fee());
+        }
+
+         */
 
     } //print account statements
 
     public void loadAccounts(File file) throws IOException {
-
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine().trim();
+            if (line.isEmpty()) continue;
+            String[] tokens = line.split(",");
+            if (tokens.length < 4) {
+                System.out.println("Invalid account format: " + line);
+                continue;
+            }
+            String name = tokens[0].trim();
+            Date dob = new Date(tokens[1].trim());
+            String type = tokens[2].trim();
+            double balance = Double.parseDouble(tokens[3].trim());
+            Account account = null;
+            switch (type) {
+                case "Checking":
+                    account = new Checking(new Profile(name, dob), balance);
+                    break;
+                case "College Checking":
+                    if (tokens.length < 5) {
+                        System.out.println("Missing campus info: " + line);
+                        continue;
+                    }
+                    int campusCode = Integer.parseInt(tokens[4].trim());
+                    account = new CollegeChecking(new Profile(name, dob), balance, Campus.fromCode(campusCode));
+                    break;
+                case "Savings":
+                    account = new Savings(new Profile(name, dob), balance);
+                    break;
+                case "Money Market":
+                    account = new MoneyMarket(new Profile(name, dob), balance);
+                    break;
+                case "CD":
+                    if (tokens.length < 6) {
+                        System.out.println("Missing term or open date: " + line);
+                        continue;
+                    }
+                    int term = Integer.parseInt(tokens[4].trim());
+                    Date openDate = new Date(tokens[5].trim());
+                    account = new CertificateDeposit(new Profile(name, dob), balance, term, openDate);
+                    break;
+                default:
+                    System.out.println("Unknown account type: " + type);
+                    continue;
+            }
+            if (!this.contains(account)) {
+                this.add(account);
+            } else {
+                System.out.println("Account already exists: " + name);
+            }
+        }
+        scanner.close();
     }
 
     public void processActivities(File file) throws IOException {
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine().trim();
+            if (line.isEmpty()) continue;
 
+            String[] tokens = line.split(",");
+            if (tokens.length < 3) {
+                System.out.println("Invalid transaction format: " + line);
+                continue;
+            }
+
+            char type = tokens[0].trim().charAt(0);
+            int accountNumber = Integer.parseInt(tokens[1].trim());
+            double amount = Double.parseDouble(tokens[2].trim());
+
+            Account account = findAccount(accountNumber);
+            if (account == null) {
+                System.out.println("Account not found: " + accountNumber);
+                continue;
+            }
+
+            Activity activity = new Activity(new Date(), null, type, amount, true);
+
+            if (type == 'D') {
+                account.deposit(amount);
+            } else if (type == 'W') {
+                if (!account.withdraw(amount)) {
+                    System.out.println("Withdrawal failed for account: " + accountNumber);
+                }
+            } else {
+                System.out.println("Invalid transaction type: " + type);
+                continue;
+            }
+            account.addActivity(activity);
+        }
+        scanner.close();
     }
 
 
