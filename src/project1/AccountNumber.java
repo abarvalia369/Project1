@@ -122,7 +122,7 @@ public class AccountNumber implements Comparable<AccountNumber> {
     /**
      * A method that returns if two accounts have the same account number
      *
-     * @param other object that is being compared to current accountNumber
+     * @param other object thSat is being compared to current accountNumber
      * @return returns 0 if equal, 1 if current accountNumber is greater than, else, -1
      */
     @Override

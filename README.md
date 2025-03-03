@@ -5,7 +5,7 @@ Arpeet Barvalia
 Jonathan John
 
 
-Commit: Saves From Test Branch to Main Branch
+Commit: Saves From test Branch to Main Branch
 
 Push: Saves From Local to Remote(Github)
 

@@ -64,6 +64,40 @@ public class Date implements Comparable<Date> {
         this.day = date.day;
     }
 
+    public Date(String date) {
+        String[] parts = date.split("/");
+
+        if (parts.length == 3) {
+            try {
+                int parsedMonth = Integer.parseInt(parts[0]);
+                int parsedDay = Integer.parseInt(parts[1]);
+                int parsedYear = Integer.parseInt(parts[2]);
+
+                this.year = parsedYear;
+                this.month = parsedMonth;
+                this.day = parsedDay;
+
+                // Validate the parsed date
+                if (!this.isValid()) {
+                    this.year = 0;
+                    this.month = 0;
+                    this.day = 0;
+                }
+            } catch (NumberFormatException e) {
+                // If parsing fails, set an invalid date
+                this.year = 0;
+                this.month = 0;
+                this.day = 0;
+            }
+        } else {
+            // If format is incorrect, set an invalid date
+            this.year = 0;
+            this.month = 0;
+            this.day = 0;
+        }
+    }
+
+
     public int getYear() {
         return year;
     }
@@ -140,15 +174,11 @@ public class Date implements Comparable<Date> {
      * @return Checks if valid year and if it is a leap year, than checks if it contains valid month and day.
      */
     public boolean isValid() {
-        //Check if Leap Year according to rules
-        Date pointer = new Date(year, month, day);
+        Date pointer = new Date(year, month, day);//Check if Leap Year according to rules
         Date today = new Date();
-        if(pointer.compareTo(today) > 0){
-            return false; 
-        }
+        if(pointer.compareTo(today) > 0){return false;}
         boolean isLeapYear = false;
-        if(year < 0)
-            return false;
+        if(year < 0) return false;
         if(year % 4 == 0) { //must be divisible by four years
             if (year % 100 != 0) { //if divisible by four, must not be divisible by 100
                 isLeapYear = true;
@@ -185,7 +215,6 @@ public class Date implements Comparable<Date> {
 
 
     public static void main(String[] args) {
-
         Date date0 = new Date(2023, 3, 0);
         System.out.println("Test 0 (0th of the Month): " + date0.isValid()); // Expected: false (1st Invalid)
 
@@ -214,7 +243,6 @@ public class Date implements Comparable<Date> {
 
         Date year = new Date(3005, 2, 29);
         System.out.println("Year Invalid (Future Year): " + year.isValid()); // Expected: false (4th Invalid)
-
         //The following tests validate our compareTo() and equals() methods
         Date date8 = new Date(2004, 5, 4);
         Date date9 = new Date(2003, 5, 22);
