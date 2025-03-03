@@ -200,15 +200,15 @@ public class AccountDatabase extends List<Account> {
      * A method for printing the current archived accounts
      */
     public void printStatements() {
-        int curr = 1;
+        int index = 1;
         if (this.get(0) != null) {
             System.out.println("*Account statements by account holder*");
             for (Account account : this) {
-                System.out.println(curr + "." + " " + account.getHolder().toString());
+                System.out.println(index + "." + " " + account.getHolder().toString());
                 System.out.println("[Account #] " + account.getNumber().toString());
                 account.statement();
                 System.out.println();
-                curr++;
+                index++;
             }
             System.out.println("*end of statements*");
         }
