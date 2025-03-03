@@ -41,17 +41,17 @@ public abstract class Account implements Comparable<Account> {
         System.out.println("[Activity]");
         for(int i = 0; i < activities.size(); i++){
             System.out.println(String.format(activities.get(i).getDate()  + "::" +  activities.get(i).getLocation().toString().toUpperCase() +
-                    "::" + activities.get(i).getType() + "::$%.2f", activities.get(i).getAmount()));
+                    "::" + activities.get(i).getType() + "::$%,.2f", activities.get(i).getAmount()));
         }
     }
 
     public void printInterestFee(double interest,double fee){
-        System.out.println("[interest] " + String.format("$%.2f", interest) + " [Fee] " + String.format("$%.2f", fee));
+        System.out.println("[interest] " + String.format("$%,.2f", interest) + " [Fee] " + String.format("$%.2f", fee));
     }
 
     public void printBalance(double interest, double fee){
         double newBalance = balance + interest - fee;
-        System.out.println("[Balance] " + String.format("$%.2f", newBalance));
+        System.out.println("[Balance] " + String.format("$%,.2f", newBalance));
     }
 
     public void addActivity(Activity activity){

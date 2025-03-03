@@ -346,7 +346,7 @@ public class AccountDatabase extends List<Account> {
                 WoD = "D";
                 deposit(accountNumber, amount);
             }
-            System.out.println(String.format(accountNumber + "::" + date.toString() + "::" + location.getBranchName().toUpperCase() + "[ATM]::" + WoD + "::$%.2f", amount));
+            System.out.println(String.format(accountNumber + "::" + date.toString() + "::" + location.getBranchName().toUpperCase() + "[ATM]::" + WoD + "::$%,.2f", amount));
 
         }
 
