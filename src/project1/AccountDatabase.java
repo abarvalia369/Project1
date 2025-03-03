@@ -164,6 +164,33 @@ public class AccountDatabase extends List<Account> {
         this.archive.print();
     }
 
+    public void printByBranch() {
+        Sort.AccountSort(this, 'B');
+        System.out.println("*List of accounts ordered by branch location (county, city).");
+        for (Account account : this) {
+            System.out.println(account);
+        }
+        System.out.println("*end of list.");
+    }
+
+    public void printByHolder() {
+        Sort.AccountSort(this, 'H');
+        System.out.println("*List of accounts ordered by account holder and number.");
+        for (Account account : this) {
+            System.out.println(account);
+        }
+        System.out.println("*end of list.");
+    }
+
+    public void printByType() {
+        Sort.AccountSort(this, 'T');
+        System.out.println("*List of accounts ordered by account type and number.");
+        for (Account account : this) {
+            System.out.println(account);
+        }
+        System.out.println("*end of list.");
+    }
+
 
     /**
      * A search method that traverses accounts in search for specfic account by reference of accountNumber String
