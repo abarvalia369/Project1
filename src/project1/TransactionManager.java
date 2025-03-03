@@ -54,19 +54,19 @@ public class TransactionManager {
                 //database.withdraw(accountDatabase, line);
                 break;
             case "P":
-                //database.printOrder();
+                System.out.println("P command is deprecated");
                 break;
             case "PA":
                 database.printArchive();
                 break;
             case "PB":
-                //database.printByBranch();
+                database.printByBranch();
                 break;
             case "PH":
-                //database.printByHolder();
+                database.printByHolder();
                 break;
             case "PT":
-                //database.printByType();
+                database.printByType();
                 break;
             case "Q":
                 System.out.println("Transaction Manager is terminated.");
