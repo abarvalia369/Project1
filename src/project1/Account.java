@@ -1,5 +1,7 @@
 package project1;
 
+import util.List;
+import util.Date;
 /**
  Account class for RU Bank project.
  Represents a bank account with an account number, holder profile, and balance.
@@ -13,6 +15,7 @@ public class Account implements Comparable<Account> {
     private AccountNumber number;
     private Profile       holder;
     private double       balance;
+    protected List<Activity> activities; //list of account activities (D or W)
 
     /**
      * Initializes an Account Object with the following 3 parameters.
@@ -26,6 +29,20 @@ public class Account implements Comparable<Account> {
         this.holder = holder;
         this.balance = balance;
     }
+
+    public final void statement() { //Template Method; DO NOT modify
+        printActivities(); //private helper method
+        double interest = interest(); //polymorphism based on actual type
+        double fee = fee(); //polymorphism based on actual type
+        printInterestFee(interest, fee); //private helper method
+        printBalance(interest, fee); //private helper method
+    }
+    public void addActivity(Activity activity){
+        activities.add(activity);
+    }//add account activity, D or W
+
+    public abstract double interest(); //monthly interest
+    public abstract double fee(); //account fee
 
     /**
      * A method to withdraw(subtract) money from the current account balance
@@ -107,3 +124,122 @@ public class Account implements Comparable<Account> {
 // Need testing main() method still
 
 }
+
+/**
+ * Checking class extending Account.
+ */
+class Checking extends Account {
+    public Checking(AccountNumber number, Profile holder, double balance) {
+        super(number, holder, balance);
+    }
+    @Override
+    public double interest() {
+        double balance = getBalance();
+        return balance >= 1000 ? (balance * 0.015 / 12) : 0;
+    }
+
+    @Override
+    public double fee() {
+        double balance = getBalance();
+        return balance >= 1000 ? 0 : 15;
+    }
+}
+
+/**
+ * CollegeChecking class extending Checking.
+ */
+class CollegeChecking extends Checking {
+    private Campus campus;
+    public CollegeChecking(AccountNumber number, Profile holder, double balance, Campus campus) {
+        super(number, holder, balance);
+        int age = holder.getAge();
+        if(age > 24){
+            System.out.println("Not eligible to open: " + holder.getDob() + " is over 24.");
+        }
+        this.campus = campus;
+    }
+
+
+    @Override
+    public double fee() {
+        return 0; // No fee for college checking
+    }
+}
+
+/**
+ * Savings class extending Account.
+ */
+class Savings extends Account {
+
+    protected boolean isLoyal;
+
+    public Savings(AccountNumber number, Profile holder, double balance, boolean isLoyal) {
+        super(number, holder, balance);
+        this.isLoyal = isLoyal;//does this need to be false on default?
+    }
+
+    @Override
+    public double interest() {
+        double balance = getBalance();
+        double rate = isLoyal ? 0.0275 : 0.025;
+        return (balance * rate / 12);
+    }
+
+    @Override
+    public double fee() {
+        double balance = getBalance();
+        return balance >= 500 ? 0 : 25;
+    }
+}
+
+/**
+ * MoneyMarket class extending Savings.
+ */
+class MoneyMarket extends Savings {
+    private int withdrawal;
+
+    public MoneyMarket(AccountNumber number, Profile holder, double balance, boolean isLoyal) {
+        super(number, holder, balance, isLoyal);
+        this.withdrawal = 0;  // start at zero withdrawals, or set as needed
+    }
+
+    @Override
+    public double fee() {
+        double balance = getBalance();
+        if (balance < 2000) return 25;
+        return withdrawal > 3 ? 10 : 0;
+    }
+}
+
+/**
+ * CertificateDeposit class extending Savings.
+ */
+class CertificateDeposit extends Savings {
+    private int term;
+    private Date open;
+
+    public CertificateDeposit(AccountNumber number, Profile holder, double balance, boolean isLoyal, int term, Date open) {
+        super(number, holder, balance, isLoyal);
+        this.term = term;
+        this.open = open;
+    }
+
+    @Override
+    public double interest() {
+        double balance = getBalance();
+        switch (term) {
+            case 3: return (balance * 0.03 / 12);
+            case 6: return (balance * 0.0325 / 12);
+            case 9: return (balance * 0.035 / 12);
+            case 12: return (balance * 0.04 / 12);
+            default: return 0;
+        }
+    }
+
+    @Override
+    public double fee() {
+        return 0; // No monthly fee for CD accounts
+    }
+}
+
+
