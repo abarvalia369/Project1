@@ -5,8 +5,7 @@ import project1.AccountDatabase;
 
 public class Sort {
 
-    //selection sort the list of accounts with different keys ("B" "H" "T" for: PB PH PT)
-    //sorting a list of Account objects
+
     public static void ListSort(List<Account> accountList, char key) {
         int n = accountList.size();
         for (int i = 0; i < n - 1; i++) {
@@ -24,36 +23,35 @@ public class Sort {
             }
         }
 
-        //AccountDatabase into List<Account>
+
         public static void AccountSort(AccountDatabase Database, char key) {
             List<Account> accountList = new List<>();
             for (int i = 0; i < Database.size(); i++) {
-                accountList.add(Database.get(i)); //move AccountDatabase to List<Account>
+                accountList.add(Database.get(i));
             }
             ListSort(accountList, key); //sorting
             for (int i = 0; i < Database.size(); i++) {
-                Database.set(i, accountList.get(i)); // Update with sorted results BACK to AccountDatabase
+                Database.set(i, accountList.get(i));
             }
         }
 
 
-    // Compares accounts based on the sorting key
     private static int compare(Account firstAcc, Account secondAcc, char key) {
         switch (key) {
-            case 'B': // Sort by Branch (County → City)
+            case 'B':
                 String branchA = firstAcc.getNumber().getBranch().getCounty() + firstAcc.getNumber().getBranch().getBranchName();
                 String branchB = secondAcc.getNumber().getBranch().getCounty() + secondAcc.getNumber().getBranch().getBranchName();
                 return branchA.compareTo(branchB);
 
-            case 'H': // Sort by Holder (Last Name → First Name → DOB → Account Number)
+            case 'H':
                 int holderCompare = firstAcc.getHolder().compareTo(secondAcc.getHolder());
                 if (holderCompare != 0) return holderCompare;
-                return firstAcc.getNumber().compareTo(secondAcc.getNumber()); // If same name, sort by Account Number
+                return firstAcc.getNumber().compareTo(secondAcc.getNumber());
 
-            case 'T': // Sort by Account Type (Then Account Number)
+            case 'T':
                 int typeCompare = firstAcc.getNumber().getAccountType().getCode().compareTo(secondAcc.getNumber().getAccountType().getCode());
                 if (typeCompare != 0) return typeCompare;
-                return firstAcc.getNumber().compareTo(secondAcc.getNumber()); // If same type, sort by Account Number
+                return firstAcc.getNumber().compareTo(secondAcc.getNumber());
 
             default:
                 throw new IllegalArgumentException("Invalid sorting key: " + key);

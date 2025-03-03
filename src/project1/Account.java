@@ -65,7 +65,7 @@ public abstract class Account implements Comparable<Account> {
      * A method to withdraw(subtract) money from the current account balance
      *
      * @param amount the amount to be withdrawn
-     */
+     *
     public void withdraw(double amount) {
         if( amount > balance ){
             System.out.println("Insufficient Funds.");
