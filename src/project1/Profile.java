@@ -79,6 +79,24 @@ public class Profile implements Comparable<Profile>{
 
         return dob.compareTo(adult) <= 0; 
     }
+    public int getAge() {
+        // 1) Obtain today's date (however your Date class handles it).
+        //    If you have a default constructor that sets to today's date, you can do:
+        Date today = new Date();
+        // OR if you have something like Date.today(), use that:
+        // Date today = Date.today();
+
+        // 2) Compute the difference in years.
+        int age = today.getYear() - dob.getYear();
+
+        // 3) If we haven't yet reached the birthday this year, subtract 1.
+        if (today.getMonth() < dob.getMonth() ||
+                (today.getMonth() == dob.getMonth() && today.getDay() < dob.getDay())) {
+            age--;
+        }
+
+        return age;
+    }
 
     /**
      * Return a textual representation of the Profile object.
