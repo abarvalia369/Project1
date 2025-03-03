@@ -132,16 +132,13 @@ public class Profile implements Comparable<Profile>{
      */
     @Override
     public int compareTo(Profile profile) {
-        String p1 = this.fname + this.lname + this.dob.toString();
-        String p2 = profile.fname + profile.lname + profile.dob.toString();
-        if (p1.equals(p2)){
-            return 0;
-        } else if(p1.compareTo(p2) > 0){
-            return 1;
-        }
-        else{
-            return -1; 
-        }
+        int lastNameCompare = this.lname.toLowerCase().compareTo(profile.lname.toLowerCase());
+        if (lastNameCompare != 0) return lastNameCompare;
+
+        int firstNameCompare = this.fname.toLowerCase().compareTo(profile.fname.toLowerCase());
+        if (firstNameCompare != 0) return firstNameCompare;
+
+        return this.dob.compareTo(profile.dob);
     }
 
     
@@ -172,8 +169,8 @@ public class Profile implements Comparable<Profile>{
         System.out.println("Test Case 6 (Invalid Date): " + p9.toString()); //Expected: Invalid
 
         // Edge case
-        Profile p10 = new Profile("Jonathann", "John", 2004, 05, 04);
-        Profile p11 = new Profile("Jonathan", "John", 2004, 05, 04);
+        Profile p10 = new Profile("Jonathan", "John", 2004, 05, 04);
+        Profile p11 = new Profile("jonathan", "john", 2004, 05, 04);
         System.out.println("Test Case 7(Edge Case): " + p10.compareTo(p11)); // Expected: 1 (2nd)
 
         // Edge case

@@ -16,7 +16,7 @@ public class List<E> implements Iterable<E> {
     public List() {
         this.objects = (E[]) new Object[INITIAL_CAP];
         this.size = 0;
-    }//new array type-casted to E with a capacity of 4.
+    }
 
 
     private int find(E e) {
@@ -86,12 +86,12 @@ public class List<E> implements Iterable<E> {
     public E get(int index) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         return objects[index];
-    } //return the object at the index
+    }
 
     public void set(int index, E e) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         this.objects[index] = e;
-    }//put object e at the index
+    }
 
     public int indexOf(E e) {
         for (int i = 0; i < size; i++) {
@@ -100,11 +100,7 @@ public class List<E> implements Iterable<E> {
             }
         }
         return NOT_FOUND;
-    } //return the index of the object
-
-
-    // or return -1
-
+    }
 
     private class ListIterator<E> implements Iterator<E> {
         int current = 0; //current index when traversing the list (array)
