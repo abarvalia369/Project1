@@ -2,8 +2,6 @@ package util;
 
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 public class List<E> implements Iterable<E> {
 
     private static final int INITIAL_CAP = 4;
@@ -64,10 +62,6 @@ public class List<E> implements Iterable<E> {
             this.objects[this.size - 1] = null;
             this.size--;
         }
-        else{
-            return;
-        }
-
     }
 
     public boolean isEmpty() {
