@@ -289,7 +289,7 @@ public class AccountDatabase extends List<Account> {
     public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance) {
         Account acct = null;
         AccountNumber acctnum = null;
-        switch (accountType.toString()) {
+        switch (accountType.toString().toLowerCase()) {
             case "checking":
                 // public Checking(AccountNumber number, Profile holder, double balance)
                 acctnum = new AccountNumber(branch, AccountType.Checking);
