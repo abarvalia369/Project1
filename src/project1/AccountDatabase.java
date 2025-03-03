@@ -2,6 +2,7 @@ package project1;
 
 import util.Date;
 import util.List;
+import util.Sort;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,14 +17,13 @@ import java.util.Scanner;
  @author arpeet barvalia, jonathan john
  */
 
-public class AccountDatabase extends List<Account>{
-     public static final int NOT_FOUND = -1;
-     public static final int GROW = 4;
-     private Archive archive; //a linked list of closed account
+public class AccountDatabase extends List<Account> {
+    public static final int NOT_FOUND = -1;
+    public static final int GROW = 4;
+    private Archive archive; //a linked list of closed account
 
     /**
      * Initializes an AccountDataBase object with an array of Accounts, size(number of accounts) = 0, and an Archive
-     *
      */
     public AccountDatabase() {
         /*this.accounts = new Account[4];
@@ -31,17 +31,19 @@ public class AccountDatabase extends List<Account>{
          */
         this.archive = new Archive();
     }
+
     /**
      * This helper method is needed for the O command
      * It takes a string passed from user input and returns the AccountType
      * or null if the string entered is not an account type
+     *
      * @param string the string to be converted to AccountType
      * @return return the converted type or null
      */
 
     private AccountType toType(String string) {
         AccountType type = null;
-        switch (string) {
+        switch (string.toLowerCase()) {
             case "checking":
                 type = AccountType.Checking;
                 break;
@@ -67,12 +69,13 @@ public class AccountDatabase extends List<Account>{
      * This helper method is needed for the O command
      * It takes a string passed from user input and returns the branch
      * or null if the string entered is not an branch
+     *
      * @param string the string to be converted to Branch
      * @return return the converted branch or null
      */
     private Branch toBranch(String string) {
         Branch branch = null;
-        switch (string) {
+        switch (string.toLowerCase()) {
             case "edison":
                 branch = Branch.Edison;
                 break;
@@ -121,25 +124,23 @@ public class AccountDatabase extends List<Account>{
      * @return returns a boolean on whether the amount could be with drawn
      */
     public boolean withdraw(AccountNumber number, double amount) {
-        if(this.findAccount(number) == NOT_FOUND){
-            return false; 
+        if (this.findAccount(number) == NOT_FOUND) {
+            return false;
         }
         int index = this.findAccount(number);
         double newBalance = this.get(index).getBalance() - amount;
         this.get(index).setBalance(newBalance);
-        if(newBalance >= 2000.00){
-            return true; 
-        }
-        else if(newBalance > 0.00){
+        if (newBalance >= 2000.00) {
+            return true;
+        } else if (newBalance > 0.00) {
             this.get(index).getNumber().setAccountType(AccountType.RegularSavings);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
 
     }
-        
+
     /**
      * A method for adding an ammount to the balance of an Account
      *
@@ -172,9 +173,9 @@ public class AccountDatabase extends List<Account>{
      */
 
     private int findAccount(String acctNumber) {
-        for(int i = 0; i < this.size(); i++){
-            if(this.get(i) != null){
-                if(this.get(i).getNumber().toString().equals(acctNumber)){
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i) != null) {
+                if (this.get(i).getNumber().toString().equals(acctNumber)) {
                     return i;
                 }
             }
@@ -183,11 +184,10 @@ public class AccountDatabase extends List<Account>{
     } //return the index or -1 not found.
 
 
-
     private int findAccount(AccountNumber acctNumber) {
-        for(int i = 0; i < this.size(); i++){
-            if(this.get(i) != null){
-                if(this.get(i).getNumber().equals(acctNumber)){
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i) != null) {
+                if (this.get(i).getNumber().equals(acctNumber)) {
                     return i;
                 }
             }
@@ -201,9 +201,9 @@ public class AccountDatabase extends List<Account>{
      */
     public void printStatements() {
         int curr = 1;
-        if(this.get(0) != null)  {
+        if (this.get(0) != null) {
             System.out.println("*Account statements by account holder*");
-            for(Account account: this) {
+            for (Account account : this) {
                 System.out.println(curr + "." + " " + account.getHolder().toString());
                 System.out.println("[Account #] " + account.getNumber().toString());
                 account.statement();
@@ -216,44 +216,39 @@ public class AccountDatabase extends List<Account>{
     } //print account statements
 
 
-
     /**
      * A method for printing the current archived accounts
      */
     public void loadAccounts(File file) throws IOException {
         Scanner scanner = new Scanner(file);
-        while(scanner.hasNextLine()) {
+        while (scanner.hasNextLine()) {
             String account = scanner.nextLine().trim();
             if (account.isEmpty())
                 continue;
-            String[] line = account.split(",");
-            AccountType type = toType(line[0]);
-            Branch branch = toBranch(line[1]);
-            Profile holder = new Profile(line[2], line[3], new Date(line[4]));
-            double balance = Double.parseDouble(line[5]);
+            String[] token = account.split(",");
+            AccountType type = toType(token[0]);
+            Branch branch = toBranch(token[1]);
+            Profile holder = new Profile(token[2], token[3], new Date(token[4]));
+            double balance = Double.parseDouble(token[5]);
             int term = 0;
             Campus c = null;
             Date start = null;
-            if(line.length > 6){
-                if(line[0].equals("certificate")){
-                    term = Integer.parseInt(line[6]);
+            if (token.length > 6) {
+                if (token[0].equals("certificate")) {
+                    term = Integer.parseInt(token[6]);
+                } else {
+                    c = toCampus(token[6]);
                 }
-                else{
-                    c = toCampus(line[6]);
-                }
-            }
-            else if(line.length > 7){
-                 start = new Date(line[7]);
+            } else if (token.length > 7) {
+                start = new Date(token[7]);
             }
 
             Account acct = null;
-            if(line.length > 7){
+            if (token.length > 7) {
                 acct = createAccount(type, branch, holder, balance, term, start);
-            }
-            else if(line.length > 6){
+            } else if (token.length > 6) {
                 acct = createAccount(type, branch, holder, balance, c);
-            }
-            else{
+            } else {
                 acct = createAccount(type, branch, holder, balance);
             }
             this.add(acct);
@@ -261,7 +256,7 @@ public class AccountDatabase extends List<Account>{
 
     }
 
-    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance){
+    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance) {
         Account acct = null;
         AccountNumber acctnum = null;
         switch (accountType.toString()) {
@@ -272,20 +267,18 @@ public class AccountDatabase extends List<Account>{
                 break;
             case "savings":
                 acctnum = new AccountNumber(branch, AccountType.RegularSavings);
-                if(SavingsLoyal(holder)){
+                if (SavingsLoyal(holder)) {
                     acct = new Savings(acctnum, holder, balance, true);
-                }
-                else{
+                } else {
                     acct = new Savings(acctnum, holder, balance, false);
                 }
 
                 break;
             case "moneymarket":
                 acctnum = new AccountNumber(branch, AccountType.MoneyMarketSavings);
-                if(balance >= 5000) {
+                if (balance >= 5000) {
                     acct = new MoneyMarket(acctnum, holder, balance, true);
-                }
-                else{
+                } else {
                     acct = new MoneyMarket(acctnum, holder, balance, false);
                 }
                 break;
@@ -298,40 +291,36 @@ public class AccountDatabase extends List<Account>{
 
     }
 
-    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, Campus campus){
+    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, Campus campus) {
         AccountNumber acctnum = new AccountNumber(branch, AccountType.CollegeChecking);
-        Account acct = new CollegeChecking(acctnum,holder,balance, campus);
+        Account acct = new CollegeChecking(acctnum, holder, balance, campus);
         return acct;
     }
 
-    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, int term, Date start){
+    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, int term, Date start) {
         AccountNumber acctnum = new AccountNumber(branch, AccountType.CD);
         Account acct = new CertificateDeposit(acctnum, holder, balance, term, start);
         return acct;
     }
 
-    public boolean SavingsLoyal(Profile holder){
+    public boolean SavingsLoyal(Profile holder) {
         Account[] holdersAccounts = new Account[this.size()];
         int index = 0;
-        for (int i = 0; i < size(); i++)
-        {
-            if(this.get(i) != null)
-            {
-                if (this.get(i).getHolder().equals(holder))
-                {
+        for (int i = 0; i < size(); i++) {
+            if (this.get(i) != null) {
+                if (this.get(i).getHolder().equals(holder)) {
                     holdersAccounts[index] = get(i);
                     index++;
                 }
             }
         }
         int i = 0;
-        while (i < holdersAccounts.length && holdersAccounts[i] != null){
-                if (holdersAccounts[i].getNumber().getAccountType().getCode().equals("01")){// checks if Holder has a regularCheckings account
-                    return true;
-                }
-                else{
+        while (i < holdersAccounts.length && holdersAccounts[i] != null) {
+            if (holdersAccounts[i].getNumber().getAccountType().getCode().equals("01")) {// checks if Holder has a regularCheckings account
+                return true;
+            } else {
                 i++;
-                }
+            }
         }
         return false;
     }
@@ -341,8 +330,33 @@ public class AccountDatabase extends List<Account>{
      * A method for printing the current archived accounts
      */
     public void processActivities(File file) throws IOException {
+        Scanner scanner = new Scanner(file);
+        List<Activity> process = new List<Activity>();
+        while (scanner.hasNextLine()) {
+            String account = scanner.nextLine().trim();
+            if (account.isEmpty())
+                continue;
+            String[] token = account.split(",");
+            String type = (token[0]);
+            AccountNumber accountNumber = new AccountNumber((token[1]));
+            Date date = new Date(token[2]);
+            Branch location = toBranch(token[3]);
+            double amount = Double.parseDouble(token[4]);
+            boolean atm  = Boolean.parseBoolean(token[5]);
+            Activity act = new Activity(date,location,type.charAt(0),amount,atm );
+            if(type.charAt(0) == 'W'){
+                withdraw(accountNumber, amount);
+            }
+            else if(type.charAt(0) == 'D'){
+                deposit(accountNumber, amount);
+            }
+
+        }
+
+
 
     }
-
-
 }
+
+
+
