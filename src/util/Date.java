@@ -64,6 +64,40 @@ public class Date implements Comparable<Date> {
         this.day = date.day;
     }
 
+    public Date(String date) {
+        String[] parts = date.split("/");
+
+        if (parts.length == 3) {
+            try {
+                int parsedMonth = Integer.parseInt(parts[0]);
+                int parsedDay = Integer.parseInt(parts[1]);
+                int parsedYear = Integer.parseInt(parts[2]);
+
+                this.year = parsedYear;
+                this.month = parsedMonth;
+                this.day = parsedDay;
+
+                // Validate the parsed date
+                if (!this.isValid()) {
+                    this.year = 0;
+                    this.month = 0;
+                    this.day = 0;
+                }
+            } catch (NumberFormatException e) {
+                // If parsing fails, set an invalid date
+                this.year = 0;
+                this.month = 0;
+                this.day = 0;
+            }
+        } else {
+            // If format is incorrect, set an invalid date
+            this.year = 0;
+            this.month = 0;
+            this.day = 0;
+        }
+    }
+
+
     public int getYear() {
         return year;
     }

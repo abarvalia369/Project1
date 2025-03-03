@@ -19,10 +19,7 @@ import java.util.Scanner;
 public class AccountDatabase extends List<Account>{
      public static final int NOT_FOUND = -1;
      public static final int GROW = 4;
-     /*
-     private Account [] accounts;
-     private int size; */
-    private Archive archive; //a linked list of closed account
+     private Archive archive; //a linked list of closed account
 
     /**
      * Initializes an AccountDataBase object with an array of Accounts, size(number of accounts) = 0, and an Archive
@@ -34,6 +31,87 @@ public class AccountDatabase extends List<Account>{
          */
         this.archive = new Archive();
     }
+    /**
+     * This helper method is needed for the O command
+     * It takes a string passed from user input and returns the AccountType
+     * or null if the string entered is not an account type
+     * @param string the string to be converted to AccountType
+     * @return return the converted type or null
+     */
+
+    private AccountType toType(String string) {
+        AccountType type = null;
+        switch (string) {
+            case "checking":
+                type = AccountType.Checking;
+                break;
+            case "savings":
+                type = AccountType.RegularSavings;
+                break;
+            case "moneymarket":
+                type = AccountType.MoneyMarketSavings;
+                break;
+            case "college":
+                type = AccountType.CollegeChecking;
+                break;
+            case "certificate":
+                type = AccountType.CD;
+                break;
+            default:
+                type = null;
+        }
+        return type;
+    }
+
+    /**
+     * This helper method is needed for the O command
+     * It takes a string passed from user input and returns the branch
+     * or null if the string entered is not an branch
+     * @param string the string to be converted to Branch
+     * @return return the converted branch or null
+     */
+    private Branch toBranch(String string) {
+        Branch branch = null;
+        switch (string) {
+            case "edison":
+                branch = Branch.Edison;
+                break;
+            case "bridgewater":
+                branch = Branch.Bridgewater;
+                break;
+            case "princeton":
+                branch = Branch.Princeton;
+                break;
+            case "piscataway":
+                branch = Branch.Piscataway;
+                break;
+            case "warren":
+                branch = Branch.Warren;
+                break;
+            default:
+                branch = null;
+        }
+        return branch;
+    }
+
+    private Campus toCampus(String string) {
+        Campus campus = null;
+        switch (string) {
+            case "1":
+                campus = Campus.NewBrunswick;
+                break;
+            case "2":
+                campus = Campus.Newark;
+                break;
+            case "3":
+                campus = Campus.Camden;
+                break;
+            default:
+                campus = null;
+        }
+        return campus;
+    }
+
 
     /**
      * A method for subtracting an ammount ot the balance of an Account
@@ -43,10 +121,10 @@ public class AccountDatabase extends List<Account>{
      * @return returns a boolean on whether the amount could be with drawn
      */
     public boolean withdraw(AccountNumber number, double amount) {
-        if(this.indexOf(number) == NOT_FOUND){
+        if(this.findAccount(number) == NOT_FOUND){
             return false; 
         }
-        int index = this.indexOf(number);
+        int index = this.findAccount(number);
         double newBalance = this.get(index).getBalance() - amount;
         this.get(index).setBalance(newBalance);
         if(newBalance >= 2000.00){
@@ -61,8 +139,6 @@ public class AccountDatabase extends List<Account>{
         }
 
     }
-
-
         
     /**
      * A method for adding an ammount to the balance of an Account
@@ -72,7 +148,7 @@ public class AccountDatabase extends List<Account>{
      */
 
     public void deposit(AccountNumber number, double amount) {
-        int index = indexOf(number);
+        int index = findAccount(number);
         if (index != NOT_FOUND) {
             double newBalance = this.get(index).getBalance() + amount;
             this.get(index).setBalance(newBalance);
@@ -87,123 +163,185 @@ public class AccountDatabase extends List<Account>{
         this.archive.print();
     }
 
-    public void printStatements() {
-        if (this.isEmpty()) {
-            System.out.println("Account Database is empty.");
-            return;
-        }
 
-        /*
-        for (int i = 0; i < this.size(); i++) {
-            Account account = this.get(i);
-            System.out.println("=== Account Statement ===");
-            System.out.println(account);
-            System.out.println("Recent Transactions:");
-            for (Activity activity : account.getActivities()) {
-                System.out.println(activity);
+    /**
+     * A search method that traverses accounts in search for specfic account by reference of accountNumber String
+     *
+     * @param acctNumber String that is being searched for in array accounts
+     * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
+     */
+
+    private int findAccount(String acctNumber) {
+        for(int i = 0; i < this.size(); i++){
+            if(this.get(i) != null){
+                if(this.get(i).getNumber().toString().equals(acctNumber)){
+                    return i;
+                }
             }
-            System.out.printf("Monthly Interest: %.2f\n", account.interest());
-            System.out.printf("Monthly Fee: %.2f\n", account.fee());
-            System.out.printf("Updated Balance: %.2f\n\n",
-                    account.getBalance() + account.interest() - account.fee());
         }
+        return NOT_FOUND;
+    } //return the index or -1 not found.
 
-         */
+
+
+    private int findAccount(AccountNumber acctNumber) {
+        for(int i = 0; i < this.size(); i++){
+            if(this.get(i) != null){
+                if(this.get(i).getNumber().equals(acctNumber)){
+                    return i;
+                }
+            }
+        }
+        return NOT_FOUND;
+    } //return the index or -1 not found.
+
+
+    /**
+     * A method for printing the current archived accounts
+     */
+    public void printStatements() {
+        int curr = 1;
+        if(this.get(0) != null)  {
+            System.out.println("*Account statements by account holder*");
+            for(Account account: this) {
+                System.out.println(curr + "." + " " + account.getHolder().toString());
+                System.out.println("[Account #] " + account.getNumber().toString());
+                account.statement();
+                System.out.println();
+                curr++;
+            }
+            System.out.println("*end of statements*");
+        }
 
     } //print account statements
 
+
+
+    /**
+     * A method for printing the current archived accounts
+     */
     public void loadAccounts(File file) throws IOException {
         Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim();
-            if (line.isEmpty()) continue;
-            String[] tokens = line.split(",");
-            if (tokens.length < 4) {
-                System.out.println("Invalid account format: " + line);
+        while(scanner.hasNextLine()) {
+            String account = scanner.nextLine().trim();
+            if (account.isEmpty())
                 continue;
+            String[] line = account.split(",");
+            AccountType type = toType(line[0]);
+            Branch branch = toBranch(line[1]);
+            Profile holder = new Profile(line[2], line[3], new Date(line[4]));
+            double balance = Double.parseDouble(line[5]);
+            int term = 0;
+            Campus c = null;
+            Date start = null;
+            if(line.length > 6){
+                if(line[0].equals("certificate")){
+                    term = Integer.parseInt(line[6]);
+                }
+                else{
+                    c = toCampus(line[6]);
+                }
             }
-            String name = tokens[0].trim();
-            Date dob = new Date(tokens[1].trim());
-            String type = tokens[2].trim();
-            double balance = Double.parseDouble(tokens[3].trim());
-            Account account = null;
-            switch (type) {
-                case "Checking":
-                    account = new Checking(new Profile(name, dob), balance);
-                    break;
-                case "College Checking":
-                    if (tokens.length < 5) {
-                        System.out.println("Missing campus info: " + line);
-                        continue;
-                    }
-                    int campusCode = Integer.parseInt(tokens[4].trim());
-                    account = new CollegeChecking(new Profile(name, dob), balance, Campus.fromCode(campusCode));
-                    break;
-                case "Savings":
-                    account = new Savings(new Profile(name, dob), balance);
-                    break;
-                case "Money Market":
-                    account = new MoneyMarket(new Profile(name, dob), balance);
-                    break;
-                case "CD":
-                    if (tokens.length < 6) {
-                        System.out.println("Missing term or open date: " + line);
-                        continue;
-                    }
-                    int term = Integer.parseInt(tokens[4].trim());
-                    Date openDate = new Date(tokens[5].trim());
-                    account = new CertificateDeposit(new Profile(name, dob), balance, term, openDate);
-                    break;
-                default:
-                    System.out.println("Unknown account type: " + type);
-                    continue;
+            else if(line.length > 7){
+                 start = new Date(line[7]);
             }
-            if (!this.contains(account)) {
-                this.add(account);
-            } else {
-                System.out.println("Account already exists: " + name);
+
+            Account acct = null;
+            if(line.length > 7){
+                acct = createAccount(type, branch, holder, balance, term, start);
             }
+            else if(line.length > 6){
+                acct = createAccount(type, branch, holder, balance, c);
+            }
+            else{
+                acct = createAccount(type, branch, holder, balance);
+            }
+            this.add(acct);
         }
-        scanner.close();
+
     }
 
-    public void processActivities(File file) throws IOException {
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim();
-            if (line.isEmpty()) continue;
-
-            String[] tokens = line.split(",");
-            if (tokens.length < 3) {
-                System.out.println("Invalid transaction format: " + line);
-                continue;
-            }
-
-            char type = tokens[0].trim().charAt(0);
-            int accountNumber = Integer.parseInt(tokens[1].trim());
-            double amount = Double.parseDouble(tokens[2].trim());
-
-            Account account = findAccount(accountNumber);
-            if (account == null) {
-                System.out.println("Account not found: " + accountNumber);
-                continue;
-            }
-
-            Activity activity = new Activity(new Date(), null, type, amount, true);
-
-            if (type == 'D') {
-                account.deposit(amount);
-            } else if (type == 'W') {
-                if (!account.withdraw(amount)) {
-                    System.out.println("Withdrawal failed for account: " + accountNumber);
+    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance){
+        Account acct = null;
+        AccountNumber acctnum = null;
+        switch (accountType.toString()) {
+            case "checking":
+                // public Checking(AccountNumber number, Profile holder, double balance)
+                acctnum = new AccountNumber(branch, AccountType.Checking);
+                acct = new Checking(acctnum, holder, balance);
+                break;
+            case "savings":
+                acctnum = new AccountNumber(branch, AccountType.RegularSavings);
+                if(SavingsLoyal(holder)){
+                    acct = new Savings(acctnum, holder, balance, true);
                 }
-            } else {
-                System.out.println("Invalid transaction type: " + type);
-                continue;
-            }
-            account.addActivity(activity);
+                else{
+                    acct = new Savings(acctnum, holder, balance, false);
+                }
+
+                break;
+            case "moneymarket":
+                acctnum = new AccountNumber(branch, AccountType.MoneyMarketSavings);
+                if(balance >= 5000) {
+                    acct = new MoneyMarket(acctnum, holder, balance, true);
+                }
+                else{
+                    acct = new MoneyMarket(acctnum, holder, balance, false);
+                }
+                break;
+            default:
+                System.out.println("Unknown account type: " + accountType);
+                break;
         }
-        scanner.close();
+
+        return acct;
+
+    }
+
+    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, Campus campus){
+        AccountNumber acctnum = new AccountNumber(branch, AccountType.CollegeChecking);
+        Account acct = new CollegeChecking(acctnum,holder,balance, campus);
+        return acct;
+    }
+
+    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, int term, Date start){
+        AccountNumber acctnum = new AccountNumber(branch, AccountType.CD);
+        Account acct = new CertificateDeposit(acctnum, holder, balance, term, start);
+        return acct;
+    }
+
+    public boolean SavingsLoyal(Profile holder){
+        Account[] holdersAccounts = new Account[this.size()];
+        int index = 0;
+        for (int i = 0; i < size(); i++)
+        {
+            if(this.get(i) != null)
+            {
+                if (this.get(i).getHolder().equals(holder))
+                {
+                    holdersAccounts[index] = get(i);
+                    index++;
+                }
+            }
+        }
+        int i = 0;
+        while (i < holdersAccounts.length && holdersAccounts[i] != null){
+                if (holdersAccounts[i].getNumber().getAccountType().getCode().equals("01")){// checks if Holder has a regularCheckings account
+                    return true;
+                }
+                else{
+                i++;
+                }
+        }
+        return false;
+    }
+
+
+    /**
+     * A method for printing the current archived accounts
+     */
+    public void processActivities(File file) throws IOException {
+
     }
 
 

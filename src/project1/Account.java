@@ -11,7 +11,7 @@ import util.Date;
  @author arpeet barvalia, jonathan john
  */
 
-public class Account implements Comparable<Account> {
+public abstract class Account implements Comparable<Account> {
     private AccountNumber number;
     private Profile       holder;
     private double       balance;
@@ -214,12 +214,12 @@ class MoneyMarket extends Savings {
 /**
  * CertificateDeposit class extending Savings.
  */
-class CertificateDeposit extends Savings {
+class CertificateDeposit extends Account {
     private int term;
     private Date open;
 
-    public CertificateDeposit(AccountNumber number, Profile holder, double balance, boolean isLoyal, int term, Date open) {
-        super(number, holder, balance, isLoyal);
+    public CertificateDeposit(AccountNumber number, Profile holder, double balance, int term, Date open) {
+        super(number, holder, balance);
         this.term = term;
         this.open = open;
     }
