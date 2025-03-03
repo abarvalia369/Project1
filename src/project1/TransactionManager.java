@@ -54,23 +54,25 @@ public class TransactionManager {
                 //database.withdraw(accountDatabase, line);
                 break;
             case "P":
-                database.printOrder();
+                //database.printOrder();
                 break;
             case "PA":
                 database.printArchive();
                 break;
             case "PB":
-                database.printByBranch();
+                //database.printByBranch();
                 break;
             case "PH":
-                database.printByHolder();
+                //database.printByHolder();
                 break;
             case "PT":
-                database.printByType();
+                //database.printByType();
                 break;
             case "Q":
                 System.out.println("Transaction Manager is terminated.");
                 System.exit(0);
+                break;
+            case "A":
                 break;
             default:
                 System.out.println( "Invalid command." );
@@ -177,6 +179,12 @@ public class TransactionManager {
             case "moneymarketsavings":
                 type = AccountType.MoneyMarketSavings;
                 break;
+            case "college":
+                type = AccountType.CollegeChecking;
+                break;
+            case "certificate":
+                type = AccountType.CD;
+                break;
             default:
                 System.out.println(accountType + " is an invalid account type.");
                 return;
@@ -220,7 +228,7 @@ public class TransactionManager {
 
         // Create Profile and Account
         Profile holder = new Profile(fname, lname, dob);
-        Account account = new Account(new AccountNumber(branch, type), holder, initialDeposit);
+        Account account = database.createAccount(type, branch, holder, initialDeposit); //new Account(new AccountNumber(branch, type), holder, initialDeposit);
 
         // Check if account already exists
         if (accountDatabase.contains(account)) {
@@ -339,7 +347,7 @@ public class TransactionManager {
 
     private void processClose(AccountDatabase accountDatabase, String[] line) {
         if (line.length == 2) {
-            accountDatabase.remove(line[1]);
+            //accountDatabase.remove(line[1]);
         }
         else {
             String [] date = line[3].split("/");
@@ -348,7 +356,7 @@ public class TransactionManager {
             int year = Integer.parseInt(date[2]);
             Date targetDate = new Date(year, month, day);
             Profile targetProfile = new Profile (line[1], line[2], targetDate);
-            accountDatabase.remove(targetProfile);
+            //accountDatabase.remove(targetProfile);
         }
     }
 

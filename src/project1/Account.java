@@ -37,6 +37,20 @@ public abstract class Account implements Comparable<Account> {
         printInterestFee(interest, fee); //private helper method
         printBalance(interest, fee); //private helper method
     }
+    public void printActivities(){
+        for(int i = 0; i < activities.size(); i++){
+
+        }
+    }
+
+    public void printInterestFee(double interest,double fee){
+
+    }
+
+    public void printBalance(double interest, double fee){
+
+    }
+
     public void addActivity(Activity activity){
         activities.add(activity);
     }//add account activity, D or W

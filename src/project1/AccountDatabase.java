@@ -251,7 +251,10 @@ public class AccountDatabase extends List<Account> {
             } else {
                 acct = createAccount(type, branch, holder, balance);
             }
-            this.add(acct);
+            if(!this.contains((acct))){
+                this.add(acct);
+            }
+
         }
 
     }
@@ -304,22 +307,12 @@ public class AccountDatabase extends List<Account> {
     }
 
     public boolean SavingsLoyal(Profile holder) {
-        Account[] holdersAccounts = new Account[this.size()];
-        int index = 0;
         for (int i = 0; i < size(); i++) {
-            if (this.get(i) != null) {
-                if (this.get(i).getHolder().equals(holder)) {
-                    holdersAccounts[index] = get(i);
-                    index++;
+            Account account = this.get(i);
+            if (account != null && account.getHolder().equals(holder)) {
+                if (account.getNumber().getAccountType() == AccountType.Checking) {
+                    return true; // Immediately return true once a checking account is found
                 }
-            }
-        }
-        int i = 0;
-        while (i < holdersAccounts.length && holdersAccounts[i] != null) {
-            if (holdersAccounts[i].getNumber().getAccountType().getCode().equals("01")) {// checks if Holder has a regularCheckings account
-                return true;
-            } else {
-                i++;
             }
         }
         return false;
@@ -344,12 +337,16 @@ public class AccountDatabase extends List<Account> {
             double amount = Double.parseDouble(token[4]);
             boolean atm  = Boolean.parseBoolean(token[5]);
             Activity act = new Activity(date,location,type.charAt(0),amount,atm );
+            String WoD = "";
             if(type.charAt(0) == 'W'){
+                WoD = "W";
                 withdraw(accountNumber, amount);
             }
             else if(type.charAt(0) == 'D'){
+                WoD = "D";
                 deposit(accountNumber, amount);
             }
+            System.out.println(String.format(accountNumber + "::" + date.toString() + "::" + location.getBranchName().toUpperCase() + "[ATM]::" + WoD + "::$%.2f", amount));
 
         }
 
