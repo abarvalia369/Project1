@@ -362,8 +362,8 @@ public class AccountDatabase extends List<Account> {
             Date date = new Date(token[2]);
             Branch location = toBranch(token[3]);
             double amount = Double.parseDouble(token[4]);
-            boolean atm  = Boolean.parseBoolean(token[5]);
-            Activity act = new Activity(date,location,type.charAt(0),amount,atm );
+            //boolean atm  = Boolean.parseBoolean(token[5]);
+            Activity act = new Activity(date,location,type.charAt(0),amount, true );
             String WoD = "";
             if(type.charAt(0) == 'W'){
                 WoD = "W";

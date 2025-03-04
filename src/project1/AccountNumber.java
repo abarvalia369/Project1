@@ -61,6 +61,12 @@ public class AccountNumber implements Comparable<AccountNumber> {
             case "03":
                 this.type = AccountType.MoneyMarketSavings;
                 break;
+            case "04":
+                this.type = AccountType.CollegeChecking;
+                break;
+            case "05":
+                this.type = AccountType.CD;
+                break;
         }
         this.number = accountNumber.substring(5);
     }
