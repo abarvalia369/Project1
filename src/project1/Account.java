@@ -12,9 +12,9 @@ import util.Date;
  */
 
 public abstract class Account implements Comparable<Account> {
-    private AccountNumber number;
-    private Profile       holder;
-    private double       balance;
+    protected AccountNumber number;
+    protected Profile       holder;
+    protected double       balance;
     protected List<Activity> activities; //list of account activities (D or W)
 
     /**
