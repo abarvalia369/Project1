@@ -30,9 +30,29 @@ public class TransactionManager {
         System.out.println("Transaction Manager is running.");
         Scanner scanner = new Scanner(System.in);
         AccountDatabase accountDatabase = new AccountDatabase();
+
         while (true) {
-            String command = scanner.nextLine();
+            // Stop if there's no more input
+            if (!scanner.hasNextLine()) {
+                break;
+            }
+            // Read the entire line and trim leading/trailing whitespace
+            String command = scanner.nextLine().trim();
+
+            // If the line is empty, skip it
+            if (command.isEmpty()) {
+                continue;
+            }
+
+            // Split the line into tokens
             String[] line = command.split("\\s+");
+
+            // If there are no tokens, skip
+            if (line.length == 0) {
+                continue;
+            }
+
+            // The first token is the command
             String commandType = line[0];
             handleCommand(commandType, line, accountDatabase);
         }
@@ -199,7 +219,37 @@ public class TransactionManager {
 
         // Create Profile and Account
         Profile holder = new Profile(fname, lname, dob);
-        Account account = database.createAccount(type, branch, holder, initialDeposit); //new Account(new AccountNumber(branch, type), holder, initialDeposit);
+        //Account account = database.createAccount(type, branch, holder, initialDeposit); //new Account(new AccountNumber(branch, type), holder, initialDeposit);
+        Account account = null;
+        switch (type) {
+            case Checking:
+            case RegularSavings:
+            case MoneyMarketSavings:
+                // Use the 4-arg createAccount
+                account = database.createAccount(type, branch, holder, initialDeposit);
+                break;
+
+            case CollegeChecking:
+                if (tokens.length < 8) {
+                    System.out.println("Missing campus code for college checking.");
+                    return;
+                }
+                Campus campus = parseCampus(tokens[7]);
+                account = database.createAccount(type, branch, holder, initialDeposit, campus);
+                break;
+
+            case CD:
+                if (tokens.length < 9) {
+                    System.out.println("Missing term/open date for certificate deposit.");
+                    return;
+                }
+                int term = Integer.parseInt(tokens[7]);
+                Date startDate = new Date(tokens[8]);
+                account = database.createAccount(type, branch, holder, initialDeposit, term, startDate);
+                break;
+        }
+
+
 
         // Check if account already exists
         if (accountDatabase.contains(account)) {
@@ -210,6 +260,15 @@ public class TransactionManager {
         // Add account to the database
         accountDatabase.add(account);
         System.out.println(type + " account " + account.getNumber() + " has been opened.");
+    }
+
+    private Campus parseCampus(String string) {
+        switch (string) {
+            case "1": return Campus.NewBrunswick;
+            case "2": return Campus.Newark;
+            case "3": return Campus.Camden;
+            default:  return null;
+        }
     }
 
     /**
@@ -231,6 +290,7 @@ public class TransactionManager {
             //accountDatabase.remove(targetProfile);
         }
     }
+
 
     private void processDeposit(AccountDatabase accountDatabase, String[] line) {
         // Expect line[1] = accountNumberString, line[2] = depositAmount
