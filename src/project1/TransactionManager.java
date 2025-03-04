@@ -1,9 +1,6 @@
 package project1;
 
 import util.Date;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -76,30 +73,62 @@ public class TransactionManager {
                 System.exit(0);
                 break;
             case "A":
-                processA(accountDatabase);
-                break;
-            case "PS":
-                processPS();
                 break;
             default:
-                System.out.println( "Invalid command!" );
+                System.out.println( "Invalid command." );
         }
 
     }
 
-    private  void processA(AccountDatabase accountDatabase) {
-        System.out.println("Processing \"activities.txt\"... ");
-        File file = new File("/Users/arpeetbarvalia/IdeaProjects/Project 1/src/project1/activities.txt");
-        try {
-            accountDatabase.processActivities(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        /**   originalrun()
+        while(true){
+            if (!scanner.hasNextLine()) break;
+            String commandLine = scanner.nextLine();
+            if(commandLine.isEmpty()){
+                continue;
+            }
+
+            StringTokenizer tokens = new StringTokenizer( commandLine );
+            String command = tokens.nextToken();
+
+            switch (command){
+                case "O":
+                    processOpen(tokens);
+                    break;
+                case "C":
+                    processClose(tokens);
+                    break;
+                case "D":
+                    deposit(tokens);
+                    break;
+                case "W":
+                    withdraw(tokens);
+                    break;
+                case "P":
+                    database.printOrder();
+                    break;
+                case "PA":
+                    database.printArchive();
+                    break;
+                case "PB":
+                    database.printByBranch();
+                    break;
+                case "PH":
+                    database.printByHolder();
+                    break;
+                case "PT":
+                    database.printByType();
+                    break;
+                case "Q":
+                    System.out.println("Transaction Manager is terminated.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println( "Invalid command." );
+            }
         }
-        System.out.println("Account activities in \"activities.txt\" processed.");
     }
-    private  void processPS() {
-        database.printStatements();
-    }
+*/
 
     /**
      * Processes "O" command
@@ -216,6 +245,105 @@ public class TransactionManager {
      * Processes "C" command
      */
 
+    /**
+    private void processClose(AccountDatabase accountDatabase, String[] tokens) {
+        if (tokens.length < 2) {
+            System.out.println("Missing account details for closing.");
+            return;
+        }
+
+        // tokens[0] is the command "C", so we start with tokens[1]
+        String identifier = tokens[1];
+        if (Character.isDigit(identifier.charAt(0))) { // Close by account number
+            AccountNumber accountNumber = new AccountNumber(identifier);
+            accountDatabase.remove(accountNumber);
+        } else { // Close by profile: expects first name, last name, and date of birth
+            if (tokens.length < 4) {
+                System.out.println("Missing account details for closing.");
+                return;
+            }
+            String firstName = tokens[1];
+            String lastName = tokens[2];
+            String dobStr = tokens[3];
+            Profile profile = new Profile(firstName, lastName, new Date(dobStr));
+            accountDatabase.remove(profile);
+        }
+    }
+    */
+
+    /**
+    private void processClose(AccountDatabase accountDatabase, String[] tokens) {
+        if (tokens.length < 2) {
+            System.out.println("Missing account details for closing.");
+            return;
+        }
+        // tokens[0] is the command "C", so we start with tokens[1]
+        String identifier = tokens[1];
+        // If identifier starts with a digit, we treat it as an account number string
+        if (Character.isDigit(identifier.charAt(0))) {
+            boolean found = false;
+            // Search through the account database for an account with a matching number
+            for (int i = 0; i < accountDatabase.getSize(); i++) {
+                Account account = accountDatabase.getAccount(i);
+                if (account.getNumber().equals(identifier)) {
+                    accountDatabase.remove(account);
+                    System.out.println("Account " + identifier + " has been closed.");
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.println("Account " + identifier + " not found.");
+            }
+        } else { // Otherwise, close by profile details: first name, last name, and date of birth
+            if (tokens.length < 4) {
+                System.out.println("Missing account details for closing.");
+                return;
+            }
+            String firstName = tokens[1];
+            String lastName = tokens[2];
+            String dobStr = tokens[3];
+
+            // Parse the date string (assumes format MM/DD/YYYY)
+            String[] dateParts = dobStr.split("/");
+            if (dateParts.length != 3) {
+                System.out.println("DOB invalid: " + dobStr);
+                return;
+            }
+            int month, day, year;
+            try {
+                month = Integer.parseInt(dateParts[0]);
+                day = Integer.parseInt(dateParts[1]);
+                year = Integer.parseInt(dateParts[2]);
+            } catch (NumberFormatException e) {
+                System.out.println("DOB invalid: " + dobStr);
+                return;
+            }
+            Date dob = new Date(year, month, day);
+            if (!dob.isValid()) {
+                System.out.println("DOB invalid: " + dobStr);
+                return;
+            }
+
+            Profile profile = new Profile(firstName, lastName, dob);
+            boolean foundAny = false;
+            // Iterate over all accounts and remove those matching the given profile.
+            // Adjust loop index if removal shifts the array.
+            for (int i = 0; i < accountDatabase.getSize(); i++) {
+                Account account = accountDatabase.getAccount(i);
+                if (account.getHolder().equals(profile)) {
+                    accountDatabase.remove(account);
+                    System.out.println("Account " + account.getNumber() + " for " + profile + " has been closed.");
+                    foundAny = true;
+                    i--; // account removed, so shift the index
+                }
+            }
+            if (!foundAny) {
+                System.out.println("No accounts found for " + profile + ".");
+            }
+        }
+    }
+    */
 
     private void processClose(AccountDatabase accountDatabase, String[] line) {
         if (line.length == 2) {
