@@ -30,6 +30,11 @@ public abstract class Account implements Comparable<Account> {
         this.balance = balance;
     }
 
+    /**
+     * Prints out statements with the help of multiple helper methods
+     *
+     *
+     */
     public final void statement() { //Template Method; DO NOT modify
         printActivities(); //private helper method
         double interest = interest(); //polymorphism based on actual type
@@ -37,6 +42,12 @@ public abstract class Account implements Comparable<Account> {
         printInterestFee(interest, fee); //private helper method
         printBalance(interest, fee); //private helper method
     }
+
+    /**
+     * helper method
+     *
+     *
+     */
     public void printActivities(){
         System.out.println("[Activity]");
         for(int i = 0; i < activities.size(); i++){
