@@ -43,7 +43,7 @@ public class AccountDatabaseTest {
         accountDatabase.add(new MoneyMarket(moneyMarketAccount,profile,4500.00, true));
 
         accountDatabase.deposit(moneyMarketAccount, 1000.00);
-        assertEquals(5500.00, accountDatabase.get(4).getBalance(), 0.01);
+        assertEquals(5500.00, accountDatabase.get(1).getBalance(), 0.01);
     }
 
     // **Withdraw Tests**

@@ -51,6 +51,7 @@ public class List<E> implements Iterable<E> {
             if(this.objects[i] == null){
                 this.objects[i] = e;
                 this.size++;
+                break;
             }
         }
 
