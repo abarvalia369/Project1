@@ -19,7 +19,7 @@ public class List<E> implements Iterable<E> {
 
     private int find(E e) {
         for (int i = 0; i < size; i++) {
-            if (objects[i].equals(e)) {
+            if (objects[i] != null && objects[i].equals(e)) {
                 return i;
             }
         }

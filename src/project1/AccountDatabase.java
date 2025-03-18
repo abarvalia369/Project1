@@ -42,29 +42,28 @@ public class AccountDatabase extends List<Account> {
      */
 
     private AccountType toType(String string) {
-        AccountType type = null;
-        switch (string.toLowerCase()) {
+        String formattedString = string.trim().toLowerCase();
+        switch (formattedString) {
             case "checking":
-                type = AccountType.Checking;
-                break;
+                return AccountType.Checking;
             case "savings":
-                type = AccountType.RegularSavings;
-                break;
+            case "regularsavings":
+                return AccountType.RegularSavings;
             case "moneymarket":
-                type = AccountType.MoneyMarketSavings;
-                break;
+            case "moneymarketsavings":
+                return AccountType.MoneyMarketSavings;
             case "college":
-                type = AccountType.CollegeChecking;
-                break;
+            case "collegechecking":
+                return AccountType.CollegeChecking;
             case "certificate":
-                type = AccountType.CD;
-                break;
+            case "certificateofdeposit":
+            case "cd":
+                return AccountType.CD;
             default:
-                type = null;
+                System.out.println("Unknown type: " + formattedString);
+                return null;
         }
-        return type;
     }
-
     /**
      * This helper method is needed for the O command
      * It takes a string passed from user input and returns the branch
@@ -289,22 +288,21 @@ public class AccountDatabase extends List<Account> {
     public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance) {
         Account acct = null;
         AccountNumber acctnum = null;
-        switch (accountType.toString().toLowerCase()) {
-            case "checking":
-                // public Checking(AccountNumber number, Profile holder, double balance)
+
+        switch (accountType) {  // ✅ FIX: Switch on Enum directly
+            case Checking:
                 acctnum = new AccountNumber(branch, AccountType.Checking);
                 acct = new Checking(acctnum, holder, balance);
                 break;
-            case "savings":
+            case RegularSavings:  // ✅ FIX: Match actual Enum names
                 acctnum = new AccountNumber(branch, AccountType.RegularSavings);
                 if (SavingsLoyal(holder)) {
                     acct = new Savings(acctnum, holder, balance, true);
                 } else {
                     acct = new Savings(acctnum, holder, balance, false);
                 }
-
                 break;
-            case "moneymarket":
+            case MoneyMarketSavings:  // ✅ FIX: Match Enum correctly
                 acctnum = new AccountNumber(branch, AccountType.MoneyMarketSavings);
                 if (balance >= 5000) {
                     acct = new MoneyMarket(acctnum, holder, balance, true);
@@ -316,12 +314,10 @@ public class AccountDatabase extends List<Account> {
                 System.out.println("Unknown account type: " + accountType);
                 break;
         }
-
         return acct;
-
     }
 
-    public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, Campus campus) {
+        public Account createAccount(AccountType accountType, Branch branch, Profile holder, Double balance, Campus campus) {
         AccountNumber acctnum = new AccountNumber(branch, AccountType.CollegeChecking);
         Account acct = new CollegeChecking(acctnum, holder, balance, campus);
         return acct;

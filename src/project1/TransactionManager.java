@@ -5,7 +5,6 @@ import util.Date;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  * A user interface class to process the transactions entered on the terminal. An instance of this class
@@ -15,21 +14,36 @@ import java.util.StringTokenizer;
  */
 public class TransactionManager {
     private AccountDatabase database;
-
+    private Scanner scanner;
     /**
      * Initalizes transaction manager
      */
     public TransactionManager(){
+        this.scanner = new Scanner(System.in);
         this.database = new AccountDatabase();
+
+        File accountsFile = new File("accounts.txt");
+        if (!accountsFile.exists()) {
+            System.out.println("ERROR: accounts.txt not found!");
+            return;
+        }
+
+        try {
+            database.loadAccounts(accountsFile);
+            System.out.println("Accounts in 'accounts.txt' loaded to the database.");
+        } catch (IOException e) {
+            System.out.println("Error loading accounts from accounts.txt.");
+        }
     }
 
     /**
      * Runs transaction manager
      */
     public void run() {
-        System.out.println("Transaction Manager is running.");
         Scanner scanner = new Scanner(System.in);
         AccountDatabase accountDatabase = new AccountDatabase();
+
+        System.out.println("Transaction Manager is running.");
 
         while (true) {
             // Stop if there's no more input
@@ -61,7 +75,8 @@ public class TransactionManager {
 
 
     private void handleCommand(String commandType, String[] line, AccountDatabase accountDatabase) {
-        switch (commandType) {
+            String formatted = commandType.trim();
+        switch (formatted) {
             case "O":
                 processOpen(accountDatabase, line);
                 break;
