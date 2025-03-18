@@ -26,7 +26,7 @@ public class AccountDatabaseTest {
         accountDatabase.add(new MoneyMarket(moneyMarketAccount,profile,4500.00, true));
 
         accountDatabase.deposit(regularAccount, 500.00);
-        assertEquals(3500.00, accountDatabase.get(0).getBalance(), 0.01);
+        assertEquals(3500.00, accountDatabase.get(0).getBalance());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class AccountDatabaseTest {
         accountDatabase.add(new MoneyMarket(moneyMarketAccount,profile,4500.00, true));
 
         accountDatabase.deposit(moneyMarketAccount, 1000.00);
-        assertEquals(5500.00, accountDatabase.get(0).getBalance(), 0.01);
+        assertEquals(5500.00, accountDatabase.get(4).getBalance(), 0.01);
     }
 
     // **Withdraw Tests**
@@ -63,7 +63,7 @@ public class AccountDatabaseTest {
 
         boolean result = accountDatabase.withdraw(regularAccount, 1000.00);
         assertTrue(result);
-        assertEquals( 2000.00, accountDatabase.get(0).getBalance(), 0.01);
+        assertEquals( 2000.00, accountDatabase.get(0).getBalance());
     }
 
     @Test
@@ -96,8 +96,13 @@ public class AccountDatabaseTest {
         accountDatabase.add(new Savings(regularAccount, profile,3000.00, true));
         accountDatabase.add(new MoneyMarket(moneyMarketAccount,profile,4500.00, true));
 
+
         boolean result = accountDatabase.withdraw(moneyMarketAccount, 1000.00);
+
+        for (int i = 0; i < accountDatabase.size(); i++) {
+            System.out.println("Index: " + i + ", Account: " + accountDatabase.get(i));
+        }
         assertTrue(result);
-        assertEquals(3500.00, accountDatabase.get(0).getBalance(), 0.01);
+        assertEquals(3500.00, accountDatabase.get(1).getBalance());
     }
 }
