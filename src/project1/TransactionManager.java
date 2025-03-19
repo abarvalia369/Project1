@@ -124,7 +124,7 @@ public class TransactionManager {
 
     private  void processA(AccountDatabase accountDatabase) {
         System.out.println("Processing \"activities.txt\"... ");
-        File file = new File("/Users/arpeetbarvalia/IdeaProjects/Project 1/src/project1/activities.txt");
+        File file = new File("activities.txt");
         try {
             accountDatabase.processActivities(file);
         } catch (IOException e) {
