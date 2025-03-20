@@ -299,25 +299,25 @@ public class TransactionManager {
                     return;
                 }
                 account = database.createAccount(type, branch, holder, initialDeposit, term, startDate);
+
                 break;
         }
 
 
         // Add the account
-        accountDatabase.add(account);
+        database.add(account);
+        System.out.println(database.size());
         System.out.println(type + " account " + account.getNumber() + " has been opened.");
 
     }
 
     private boolean exists(Profile holder, AccountType type){
-        System.out.println("🔍 Checking if " + holder + " already has a " + type + " account...");
 
         for (int i = 0; i < this.database.size(); i++) {
             Account existing = this.database.get(i);
-            System.out.println("   ↳ Comparing with: " + existing.getHolder() + " - " + existing.getNumber().getAccountType());
 
             if (existing.getHolder().equals(holder) && existing.getNumber().getAccountType() == type) {
-                System.out.println("✅ Duplicate found: " + holder + " already has a " + type + " account.");
+                //System.out.println(" Duplicate found: " + holder + " already has a " + type + " account.");
                 return true;
             }
         }
