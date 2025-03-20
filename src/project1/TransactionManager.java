@@ -169,32 +169,54 @@ public class TransactionManager {
             return;
         }
         Date dob = new Date(year, month, day);
+
         if (!dob.isValid()) {
             System.out.println("DOB invalid: " + dobinput);
             return;
         }
 
+        Date today = new Date();
+        int todayYear = today.getYear();
+        int todayMonth = today.getMonth();
+        int todayDay = today.getDay();
+
+        int birthYear = dob.getYear();
+        int birthMonth = dob.getMonth();
+        int birthDay = dob.getDay();
+
+        int age = todayYear - birthYear;
+        if (todayMonth < birthMonth || (todayMonth == birthMonth && todayDay < birthDay)) {
+            age--;
+        }
+
+        if (age < 18) {
+            System.out.println("Applicant must be at least 18 years old.");
+            return;
+        }
+
+
         // Determine account type
-        switch (accountType.toLowerCase()) {
+        switch (accountType.trim().toLowerCase()) {
             case "checking":
                 type = AccountType.Checking;
                 break;
-            case "regularsavings":
+            case "regularsavings", "savings":
                 type = AccountType.RegularSavings;
                 break;
-            case "moneymarketsavings":
+            case "moneymarketsavings", "moneymarket":
                 type = AccountType.MoneyMarketSavings;
                 break;
-            case "college":
+            case "college", "collegechecking":
                 type = AccountType.CollegeChecking;
                 break;
-            case "certificate":
+            case "certificate", "certificatedeposit", "cd":
                 type = AccountType.CD;
                 break;
             default:
                 System.out.println(accountType + " is an invalid account type.");
                 return;
         }
+
 
         // Determine branch
         switch (branchinput.toLowerCase()) {
@@ -227,7 +249,7 @@ public class TransactionManager {
             return;
         }
 
-        if (initialDeposit <= 0 || (type == AccountType.MoneyMarketSavings && initialDeposit < 2000)) {
+        if (initialDeposit <= 0 || (type == AccountType.MoneyMarketSavings && initialDeposit < 2000) || (type == AccountType.CD && initialDeposit < 1000)){
             System.out.println("Invalid initial deposit amount.");
             return;
         }
@@ -241,12 +263,24 @@ public class TransactionManager {
             case RegularSavings:
             case MoneyMarketSavings:
                 // Use the 4-arg createAccount
+                if (exists(holder,type)) {
+                    System.out.println(holder + " already has a " + type + " account.");
+                    return;
+                }
                 account = database.createAccount(type, branch, holder, initialDeposit);
                 break;
 
             case CollegeChecking:
                 if (tokens.length < 8) {
-                    System.out.println("Missing campus code for college checking.");
+                    System.out.println("Missing data tokens for opening an account.");
+                    return;
+                }
+                if (age >= 24) {
+                    System.out.println("Not eligible to open: " + dob.toString() + " over 24.");
+                    return;
+                }
+                if (exists(holder,type)) {
+                    System.out.println(holder + " already has a " + type + " account.");
                     return;
                 }
                 Campus campus = parseCampus(tokens[7]);
@@ -255,26 +289,40 @@ public class TransactionManager {
 
             case CD:
                 if (tokens.length < 9) {
-                    System.out.println("Missing term/open date for certificate deposit.");
+                    System.out.println("Missing data tokens for opening an account.");
                     return;
                 }
                 int term = Integer.parseInt(tokens[7]);
                 Date startDate = new Date(tokens[8]);
+                if(term != 3 && term != 6 && term != 9 && term != 12){
+                    System.out.println(term + " is not a valid term.");
+                    return;
+                }
                 account = database.createAccount(type, branch, holder, initialDeposit, term, startDate);
                 break;
         }
 
 
-
-        // Check if account already exists
-        if (accountDatabase.contains(account)) {
-            System.out.println(holder + " already has a " + type + " account.");
-            return;
-        }
-
-        // Add account to the database
+        // Add the account
         accountDatabase.add(account);
         System.out.println(type + " account " + account.getNumber() + " has been opened.");
+
+    }
+
+    private boolean exists(Profile holder, AccountType type){
+        System.out.println("🔍 Checking if " + holder + " already has a " + type + " account...");
+
+        for (int i = 0; i < this.database.size(); i++) {
+            Account existing = this.database.get(i);
+            System.out.println("   ↳ Comparing with: " + existing.getHolder() + " - " + existing.getNumber().getAccountType());
+
+            if (existing.getHolder().equals(holder) && existing.getNumber().getAccountType() == type) {
+                System.out.println("✅ Duplicate found: " + holder + " already has a " + type + " account.");
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private Campus parseCampus(String string) {

@@ -41,18 +41,31 @@ public class List<E> implements Iterable<E> {
     }
 
     public void add(E e) {
-        if(this.contains(e)){
+        System.out.println("📌 Attempting to add: " + e);
+
+        if (this.contains(e)) {
+            System.out.println("❌ Skipping add: " + e + " (already exists)");
             return;
         }
+
         if (size == objects.length) {
+            System.out.println("🛠 Growing array before adding " + e);
             grow();
         }
-        for(int i =0; i < objects.length; i++){
-            if(this.objects[i] == null){
+
+        boolean added = false;
+        for (int i = 0; i < objects.length; i++) {
+            if (this.objects[i] == null) {
                 this.objects[i] = e;
                 this.size++;
+                System.out.println("✅ Successfully added: " + e);
+                added = true;
                 break;
             }
+        }
+
+        if (!added) {
+            System.out.println("❌ Failed to add: " + e + " (no space)");
         }
 
     }
