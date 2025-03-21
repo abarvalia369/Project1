@@ -363,11 +363,7 @@ public class TransactionManager {
         }
         String accountNumberStr = line[1];
         String amountStr        = line[2];
-
-        // 1) Build an AccountNumber from the string
         AccountNumber acctNum = new AccountNumber(accountNumberStr);
-
-        // 2) Parse the deposit amount
         double depositAmount;
         try {
             depositAmount = Double.parseDouble(amountStr);
@@ -375,11 +371,29 @@ public class TransactionManager {
             System.out.println("Invalid deposit amount: " + amountStr);
             return;
         }
+        if(depositAmount <= 0){
+            System.out.println(depositAmount + " - deposit amount cannot be 0 or negative.");
+            return;
+        }
+        if(!accountExists(acctNum)){
+            System.out.println(acctNum + " does not exist");
+            return;
+        }
+        database.deposit(acctNum, depositAmount);
+        System.out.println(depositAmount + " deposited to " + accountNumberStr + ".");
+    }
 
-        // 3) Call deposit in the database
-        //    deposit(AccountNumber, double)
-        accountDatabase.deposit(acctNum, depositAmount);
-        System.out.println("Deposit of $" + depositAmount + " made to account " + accountNumberStr + ".");
+    private boolean accountExists(AccountNumber num){
+
+        for (int i = 0; i < this.database.size(); i++) {
+            Account existing = this.database.get(i);
+            //System.out.println("This is the num : " + existing.getNumber() );
+            if (existing.getNumber().equals(num)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void processWithdraw(AccountDatabase accountDatabase, String[] line) {
@@ -403,8 +417,16 @@ public class TransactionManager {
             return;
         }
 
-        // 3) Call withdraw in the database
-        boolean success = accountDatabase.withdraw(acctNum, withdrawAmount);
+        if(withdrawAmount <= 0){
+            System.out.println(withdrawAmount + " - deposit amount cannot be 0 or negative.");
+            return;
+        }
+        if(!accountExists(acctNum)){
+            System.out.println(acctNum + " does not exist");
+            return;
+        }
+
+        boolean success = database.withdraw(acctNum, withdrawAmount);
         if (!success) {
             System.out.println("Withdrawal cannot be completed for account " + accountNumberStr + ".");
         } else {

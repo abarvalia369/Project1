@@ -128,10 +128,11 @@ public class AccountDatabase extends List<Account> {
         }
         int index = this.findAccount(number);
         double newBalance = this.get(index).getBalance() - amount;
-        this.get(index).setBalance(newBalance);
         if (newBalance >= 2000.00) {
+            this.get(index).setBalance(newBalance);
             return true;
         } else if (newBalance > 0.00) {
+            this.get(index).setBalance(newBalance);
             this.get(index).getNumber().setAccountType(AccountType.RegularSavings);
             return true;
         } else {
@@ -198,7 +199,7 @@ public class AccountDatabase extends List<Account> {
      * @return returns an index int value of where in the array the parameter account is, return the index or -1 not found.
      */
 
-    private int findAccount(String acctNumber) {
+    public int findAccount(String acctNumber) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i) != null) {
                 if (this.get(i).getNumber().toString().equals(acctNumber)) {
@@ -210,7 +211,7 @@ public class AccountDatabase extends List<Account> {
     } //return the index or -1 not found.
 
 
-    private int findAccount(AccountNumber acctNumber) {
+    public int findAccount(AccountNumber acctNumber) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i) != null) {
                 if (this.get(i).getNumber().equals(acctNumber)) {
