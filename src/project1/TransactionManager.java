@@ -68,7 +68,7 @@ public class TransactionManager {
 
             // The first token is the command
             String commandType = line[0];
-            handleCommand(commandType, line, accountDatabase);
+            handleCommand(commandType, line, database);
         }
     }
 
@@ -95,23 +95,23 @@ public class TransactionManager {
                 System.out.println("P command is deprecated");
                 break;
             case "PA":
-                database.printArchive();
+                accountDatabase.printArchive();
                 break;
             case "PB":
-                database.printByBranch();
+                accountDatabase.printByBranch();
                 break;
             case "PH":
-                database.printByHolder();
+                accountDatabase.printByHolder();
                 break;
             case "PT":
-                database.printByType();
+                accountDatabase.printByType();
                 break;
             case "Q":
                 System.out.println("Transaction Manager is terminated.");
                 System.exit(0);
                 break;
             case "A":
-                processA(database);
+                processA(accountDatabase);
                 break;
             case "PS":
                 processPS();
