@@ -218,6 +218,10 @@ class Savings extends Account {
         double balance = getBalance();
         return balance >= 500 ? 0 : 25;
     }
+
+    public boolean loyalty(){
+        return isLoyal;
+    }
 }
 
 /**
@@ -250,6 +254,29 @@ class CertificateDeposit extends Account {
         super(number, holder, balance);
         this.term = term;
         this.open = open;
+    }
+
+    public Date getOpen(){
+        return this.open;
+    }
+
+    public int getTerm(){
+        return this.term;
+    }
+
+    public double getRate(){
+        if(this.getTerm() == 3){
+            return .03;
+        }else if(this.getTerm() == 6){
+            return .0325;
+        }else if(this.getTerm() == 9){
+            return .035;
+        }else if(this.getTerm() == 12){
+            return .04;
+        }
+        else{
+            return -1;
+        }
     }
 
     @Override

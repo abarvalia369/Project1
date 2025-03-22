@@ -30,6 +30,7 @@ public class Date implements Comparable<Date> {
     public static final int SHORTMONTHDAYS = 30;
     public static final int FEBRUARYDAYS = 28;
     public static final int FEBRUARYLEAP = 29;
+    private static final int[] DAYS_IN_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     /**
      * Initializes an Date Object with the current Date
@@ -170,7 +171,6 @@ public class Date implements Comparable<Date> {
     /**
      * Checks if date is a valid date
      *
-     * @param date the date object to be validated.
      * @return Checks if valid year and if it is a leap year, than checks if it contains valid month and day.
      */
     public boolean isValid() {
@@ -211,6 +211,19 @@ public class Date implements Comparable<Date> {
                 return false;
         }
         return true;
+    }
+
+    private int daysSinceYearStart() {
+        int days = 0;
+        for (int m = 1; m < this.month; m++) {
+            days += DAYS_IN_MONTH[m - 1];
+        }
+        days += this.day;
+        return days;
+    }
+
+    public int daysBetween(Date other) {
+        return Math.abs((this.daysSinceYearStart()) + (365 - other.daysSinceYearStart()));
     }
 
 

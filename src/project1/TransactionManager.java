@@ -336,21 +336,95 @@ public class TransactionManager {
     /**
      * Processes "C" command
      */
-
-
     private void processClose(AccountDatabase accountDatabase, String[] line) {
-        if (line.length == 2) {
-            //accountDatabase.remove(line[1]);
+        if (line.length < 3) {
+            System.out.println("Missing data needed to deposit.");
+            return;
         }
-        else {
-            String [] date = line[3].split("/");
-            int month = Integer.parseInt(date[0]);
-            int day = Integer.parseInt(date[1]);
-            int year = Integer.parseInt(date[2]);
-            Date targetDate = new Date(year, month, day);
-            Profile targetProfile = new Profile (line[1], line[2], targetDate);
-            //accountDatabase.remove(targetProfile);
+
+        if (line.length ==4){
+            System.out.println("Missing data needed to deposit.");
+            return;
         }
+
+        if (line.length == 3) {
+            closeByAcc(accountDatabase, line);
+        }
+        else if (line.length == 5){
+            closeByProfile(accountDatabase, line);
+        }
+
+    }
+
+    private void closeByAcc(AccountDatabase accountDatabase, String[] line){
+        String [] date = line[1].split("/");
+        int month = Integer.parseInt(date[0]);
+        int day = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        Date closeDate = new Date(year, month, day);
+
+        String accountNumberStr = line[2];
+        int index = database.findAccount(accountNumberStr);
+        if(index == -1){
+            System.out.println(accountNumberStr + " does not exist");
+            return;
+        }
+        Account acct = database.get(index);
+        AccountNumber acctNum = acct.getNumber();
+
+        double earnedInterest = 0;
+
+        if (acct instanceof CertificateDeposit cd) {
+            Date openDate = cd.getOpen(); // assuming getter exists
+            int daysOpen = openDate.daysBetween(closeDate);
+
+            if (daysOpen >= cd.getTerm() * 30) {
+                double rate = cd.getRate(); // based on 3, 6, 9, 12 month terms
+                earnedInterest = cd.getBalance() * (rate / 365.0) * daysOpen;
+            } else {
+                // Early close
+                double earlyRate;
+                if (daysOpen / 30 <= 6) earlyRate = 0.03;
+                else if (daysOpen / 30 <= 9) earlyRate = 0.0325;
+                else earlyRate = 0.035;
+
+                earnedInterest = cd.getBalance() * (earlyRate / 365.0) * daysOpen;
+                double penalty = earnedInterest * 0.10;
+                earnedInterest -= penalty;
+            }
+        } else {
+            // Non-CD account
+            int daysInMonth = closeDate.getDay();
+            double annualRate = getAnnualRate(acct);
+            earnedInterest = acct.getBalance() * (annualRate / 365.0) * daysInMonth;
+        }
+
+        String formatted = String.format("%.2f", earnedInterest);
+        System.out.println("Closing account " + acctNum.toString());
+        System.out.println("--interest earned: " +  formatted);
+
+        database.remove(acct);
+        database.getArchive().add(acct, closeDate);
+    }
+
+    private void closeByProfile(AccountDatabase accountDatabase, String[] line){
+
+    }
+
+    private double getAnnualRate(Account acct){
+        AccountType type = acct.getNumber().getAccountType();
+
+        if (type == AccountType.RegularSavings && acct instanceof Savings savings) {
+            return savings.loyalty() ? 0.0275 : 0.025;
+        }
+        else if (type == AccountType.MoneyMarketSavings && acct instanceof MoneyMarket moneyMarket) {
+            return moneyMarket.loyalty() ? 0.0375 : 0.035;
+        }
+        else if (type == AccountType.Checking || type == AccountType.CollegeChecking) {
+            return 0.015;
+        }
+
+        return -1; // unknown type
     }
 
 

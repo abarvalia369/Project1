@@ -163,6 +163,10 @@ public class AccountDatabase extends List<Account> {
         this.archive.print();
     }
 
+    public Archive getArchive() {
+        return archive;
+    }
+
     public void printByBranch() {
         Sort.AccountSort(this, 'B');
         System.out.println("*List of accounts ordered by branch location (county, city).");
