@@ -111,7 +111,7 @@ public class TransactionManager {
                 System.exit(0);
                 break;
             case "A":
-                processA(accountDatabase);
+                processA(database);
                 break;
             case "PS":
                 processPS();
@@ -306,7 +306,6 @@ public class TransactionManager {
 
         // Add the account
         database.add(account);
-        System.out.println(database.size());
         System.out.println(type + " account " + account.getNumber() + " has been opened.");
 
     }
@@ -363,7 +362,15 @@ public class TransactionManager {
         }
         String accountNumberStr = line[1];
         String amountStr        = line[2];
-        AccountNumber acctNum = new AccountNumber(accountNumberStr);
+
+        int index = database.findAccount(accountNumberStr);
+        if(index == -1){
+            System.out.println(accountNumberStr + " does not exist");
+            return;
+        }
+        Account acct = database.get(index);
+        AccountNumber acctNum = acct.getNumber();
+
         double depositAmount;
         try {
             depositAmount = Double.parseDouble(amountStr);
@@ -379,8 +386,11 @@ public class TransactionManager {
             System.out.println(acctNum + " does not exist");
             return;
         }
+
+        System.out.println("BEFORE " + acct.getBalance());
         database.deposit(acctNum, depositAmount);
         System.out.println(depositAmount + " deposited to " + accountNumberStr + ".");
+        System.out.println("AFTER " + acct.getBalance());
     }
 
     private boolean accountExists(AccountNumber num){
@@ -406,7 +416,13 @@ public class TransactionManager {
         String amountStr        = line[2];
 
         // 1) Build an AccountNumber
-        AccountNumber acctNum = new AccountNumber(accountNumberStr);
+        int index = database.findAccount(accountNumberStr);
+        if(index == -1){
+            System.out.println(accountNumberStr + " does not exist");
+            return;
+        }
+        Account acct = database.get(index);
+        AccountNumber acctNum = acct.getNumber();
 
         // 2) Parse the withdrawal amount
         double withdrawAmount;
@@ -421,17 +437,19 @@ public class TransactionManager {
             System.out.println(withdrawAmount + " - deposit amount cannot be 0 or negative.");
             return;
         }
-        if(!accountExists(acctNum)){
-            System.out.println(acctNum + " does not exist");
-            return;
-        }
 
+        System.out.println("BEFORE " + acct.getBalance());
         boolean success = database.withdraw(acctNum, withdrawAmount);
-        if (!success) {
-            System.out.println("Withdrawal cannot be completed for account " + accountNumberStr + ".");
-        } else {
-            System.out.println("Withdrawal of $" + withdrawAmount + " made from account " + accountNumberStr + ".");
+        if (!success && (acctNum.getAccountType() == AccountType.MoneyMarketSavings) &&  acct.getBalance() < 2000) {
+            System.out.println(accountNumberStr + " balance below $2,000 - withdrawing " + withdrawAmount + " - insufficient funds.");
+        }else if(!success){
+            System.out.println(accountNumberStr + " withdrawing " + withdrawAmount + " - insufficient funds.");
+        }else if((acctNum.getAccountType() == AccountType.MoneyMarketSavings) &&  acct.getBalance() < 2000){
+            System.out.println(accountNumberStr + " balance below $2,000 - " + withdrawAmount + " withdrawn from " + accountNumberStr);
+        }else{
+            System.out.println(withdrawAmount + " withdrawn from " + accountNumberStr);
         }
+        System.out.println("AFTER " + acct.getBalance());
     }
 
 

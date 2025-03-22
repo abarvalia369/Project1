@@ -133,7 +133,6 @@ public class AccountDatabase extends List<Account> {
             return true;
         } else if (newBalance > 0.00) {
             this.get(index).setBalance(newBalance);
-            this.get(index).getNumber().setAccountType(AccountType.RegularSavings);
             return true;
         } else {
             return false;
@@ -214,7 +213,7 @@ public class AccountDatabase extends List<Account> {
     public int findAccount(AccountNumber acctNumber) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i) != null) {
-                if (this.get(i).getNumber().equals(acctNumber)) {
+                if (this.get(i).getNumber().toString().equals(acctNumber.toString())) {
                     return i;
                 }
             }
@@ -280,6 +279,7 @@ public class AccountDatabase extends List<Account> {
             }
             if(!this.contains((acct))){
                 this.add(acct);
+                System.out.println(acct.getNumber() + " with initial balance of " + acct.getBalance());
             }
 
         }
@@ -355,7 +355,10 @@ public class AccountDatabase extends List<Account> {
                 continue;
             String[] token = account.split(",");
             String type = (token[0]);
-            AccountNumber accountNumber = new AccountNumber((token[1]));
+            String accountNumberStr = token[1].trim();
+            int index = findAccount(accountNumberStr);
+            Account acct = get(index);
+            AccountNumber accountNumber = acct.getNumber();
             Date date = new Date(token[2]);
             Branch location = toBranch(token[3]);
             double amount = Double.parseDouble(token[4]);
