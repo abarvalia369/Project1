@@ -231,19 +231,41 @@ public class AccountDatabase extends List<Account> {
      * A method for printing the current archived accounts
      */
     public void printStatements() {
-        int index = 1;
-        if (this.get(0) != null) {
-            System.out.println("*Account statements by account holder*");
-            for (Account account : this) {
-                System.out.println(index + "." + " " + account.getHolder().toString());
-                System.out.println("[Account #] " + account.getNumber().toString());
-                account.statement();
-                System.out.println();
-                index++;
+        System.out.println("*Account statements by account holder*");
+
+        List<Profile> seenProfiles = new List<>(); // use your util.List
+
+        for (int i = 0; i < this.size(); i++) {
+            Account currentAccount = this.get(i);
+            Profile currentHolder = currentAccount.getHolder();
+
+            // Skip if already printed this holder
+            boolean alreadyPrinted = false;
+            for (int j = 0; j < seenProfiles.size(); j++) {
+                if (seenProfiles.get(j).equals(currentHolder)) {
+                    alreadyPrinted = true;
+                    break;
+                }
             }
-            System.out.println("*end of statements*");
+            if (alreadyPrinted) continue;
+
+            // Mark this holder as seen
+            seenProfiles.add(currentHolder);
+
+            // Print each account under this profile
+            System.out.println((seenProfiles.size()) + ". " + currentHolder.toString());
+
+            for (int k = 0; k < this.size(); k++) {
+                Account account = this.get(k);
+                if (account.getHolder().equals(currentHolder)) {
+                    System.out.println("[Account #] " + account.getNumber());
+                    account.statement();
+                    System.out.println();
+                }
+            }
         }
 
+        System.out.println("*end of statements*");
     } //print account statements
 
 
