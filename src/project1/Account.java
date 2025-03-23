@@ -257,7 +257,7 @@ class CertificateDeposit extends Account {
     }
 
     public Date getOpen(){
-        return this.open;
+        return open;
     }
 
     public int getTerm(){
@@ -275,7 +275,7 @@ class CertificateDeposit extends Account {
             return .04;
         }
         else{
-            return -1;
+            return 0.0;
         }
     }
 

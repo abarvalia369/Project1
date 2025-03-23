@@ -269,7 +269,8 @@ public class AccountDatabase extends List<Account> {
                 } else {
                     c = toCampus(token[6]);
                 }
-            } else if (token.length > 7) {
+            }
+            if (token.length > 7) {
                 start = new Date(token[7]);
             }
 
@@ -283,7 +284,6 @@ public class AccountDatabase extends List<Account> {
             }
             if(!this.contains((acct))){
                 this.add(acct);
-                System.out.println(acct.getNumber() + " with initial balance of " + acct.getBalance());
             }
 
         }
@@ -294,12 +294,12 @@ public class AccountDatabase extends List<Account> {
         Account acct = null;
         AccountNumber acctnum = null;
 
-        switch (accountType) {  // ✅ FIX: Switch on Enum directly
+        switch (accountType) {
             case Checking:
                 acctnum = new AccountNumber(branch, AccountType.Checking);
                 acct = new Checking(acctnum, holder, balance);
                 break;
-            case RegularSavings:  // ✅ FIX: Match actual Enum names
+            case RegularSavings:
                 acctnum = new AccountNumber(branch, AccountType.RegularSavings);
                 if (SavingsLoyal(holder)) {
                     acct = new Savings(acctnum, holder, balance, true);
@@ -307,7 +307,7 @@ public class AccountDatabase extends List<Account> {
                     acct = new Savings(acctnum, holder, balance, false);
                 }
                 break;
-            case MoneyMarketSavings:  // ✅ FIX: Match Enum correctly
+            case MoneyMarketSavings:
                 acctnum = new AccountNumber(branch, AccountType.MoneyMarketSavings);
                 if (balance >= 5000) {
                     acct = new MoneyMarket(acctnum, holder, balance, true);

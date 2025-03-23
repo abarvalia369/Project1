@@ -213,19 +213,6 @@ public class Date implements Comparable<Date> {
         return true;
     }
 
-    private int daysSinceYearStart() {
-        int days = 0;
-        for (int m = 1; m < this.month; m++) {
-            days += DAYS_IN_MONTH[m - 1];
-        }
-        days += this.day;
-        return days;
-    }
-
-    public int daysBetween(Date other) {
-        return Math.abs((this.daysSinceYearStart()) + (365 - other.daysSinceYearStart()));
-    }
-
 
     public static void main(String[] args) {
         Date date0 = new Date(2023, 3, 0);

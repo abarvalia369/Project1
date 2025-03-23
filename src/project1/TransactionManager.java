@@ -362,7 +362,6 @@ public class TransactionManager {
         int day = Integer.parseInt(date[1]);
         int year = Integer.parseInt(date[2]);
         Date closeDate = new Date(year, month, day);
-
         String accountNumberStr = line[2];
         int index = database.findAccount(accountNumberStr);
         if(index == -1){
@@ -371,44 +370,114 @@ public class TransactionManager {
         }
         Account acct = database.get(index);
         AccountNumber acctNum = acct.getNumber();
-
         double earnedInterest = 0;
-
         if (acct instanceof CertificateDeposit cd) {
             Date openDate = cd.getOpen(); // assuming getter exists
-            int daysOpen = openDate.daysBetween(closeDate);
-
+            int daysOpen = daysBetween(openDate, closeDate) + 1;
             if (daysOpen >= cd.getTerm() * 30) {
                 double rate = cd.getRate(); // based on 3, 6, 9, 12 month terms
                 earnedInterest = cd.getBalance() * (rate / 365.0) * daysOpen;
+                String formatted = String.format("$%.2f", earnedInterest);
+                System.out.println("Closing account " + acctNum.toString());
+                System.out.println("--" + acctNum + " interest earned: " + formatted);
             } else {
-                // Early close
                 double earlyRate;
-                if (daysOpen / 30 <= 6) earlyRate = 0.03;
-                else if (daysOpen / 30 <= 9) earlyRate = 0.0325;
+                if (daysOpen / 30.0 <= 6) earlyRate = 0.03;
+                else if (daysOpen / 30.0 <= 9) earlyRate = 0.0325;
                 else earlyRate = 0.035;
 
                 earnedInterest = cd.getBalance() * (earlyRate / 365.0) * daysOpen;
                 double penalty = earnedInterest * 0.10;
-                earnedInterest -= penalty;
+                penalty = roundUpToTwoDecimal(penalty);
+                String formatted = String.format("$%.2f", earnedInterest);
+                System.out.println("Closing account " + acctNum.toString());
+                System.out.println("--interest earned: " + formatted);
+                System.out.println("  [penalty] $" + penalty);
             }
         } else {
-            // Non-CD account
             int daysInMonth = closeDate.getDay();
             double annualRate = getAnnualRate(acct);
             earnedInterest = acct.getBalance() * (annualRate / 365.0) * daysInMonth;
+            System.out.println("Closing account " + acctNum.toString());
+            String formatted = String.format("$%.2f", earnedInterest);
+            System.out.println("--interest earned: " +  formatted);
         }
-
-        String formatted = String.format("%.2f", earnedInterest);
-        System.out.println("Closing account " + acctNum.toString());
-        System.out.println("--interest earned: " +  formatted);
-
-        database.remove(acct);
-        database.getArchive().add(acct, closeDate);
+        accountDatabase.getArchive().add(acct, closeDate);
+        accountDatabase.remove(acct);
     }
 
     private void closeByProfile(AccountDatabase accountDatabase, String[] line){
+        // Parse the date
+        String[] dateParts = line[1].split("/");
+        int month = Integer.parseInt(dateParts[0]);
+        int day = Integer.parseInt(dateParts[1]);
+        int year = Integer.parseInt(dateParts[2]);
+        Date closeDate = new Date(year, month, day);
 
+        // Parse profile info
+        String firstName = line[2];
+        String lastName = line[3];
+        String[] dobParts = line[4].split("/");
+        int dobMonth = Integer.parseInt(dobParts[0]);
+        int dobDay = Integer.parseInt(dobParts[1]);
+        int dobYear = Integer.parseInt(dobParts[2]);
+        Date dob = new Date(dobYear, dobMonth, dobDay);
+        Profile profile = new Profile(firstName, lastName, dob);
+
+        boolean found = false;
+        System.out.println("Closing accounts for " + profile);
+
+        // Loop through accounts and collect matches
+        for (int i = 0; i < database.size(); i++) {
+            Account acct = database.get(i);
+            if (acct != null && acct.getHolder().equals(profile)) {
+                found = true;
+                AccountNumber acctNum = acct.getNumber();
+                double earnedInterest = 0;
+                if (acct instanceof CertificateDeposit cd) {
+                    Date openDate = cd.getOpen(); // assuming getter exists
+                    int daysOpen = daysBetween(openDate,closeDate) + 1;
+                    if (daysOpen >= cd.getTerm() * 30) {
+                        System.out.println(">>> Treated as matured CD");
+                        double rate = cd.getRate(); // based on 3, 6, 9, 12 month terms
+                        earnedInterest = cd.getBalance() * (rate / 365.0) * daysOpen;
+                        String formatted = String.format("$%.2f", earnedInterest);
+                        System.out.println("--" + acctNum + " interest earned: " + formatted);
+                    } else {
+                        double earlyRate = 0.;
+                        if (daysOpen / 30.0  <= 6) earlyRate = 0.03;
+                        else if (daysOpen / 30.0 <= 9) earlyRate = 0.0325;
+                        else if (daysOpen / 30.0  < 12) earlyRate = 0.035;
+
+                        earnedInterest = cd.getBalance() * (earlyRate / 365.0) * daysOpen;
+                        double penalty = earnedInterest * 0.10;
+                        penalty = roundUpToTwoDecimal(penalty);
+                        String formatted = String.format("$%.2f", earnedInterest);
+                        System.out.println("--" + acctNum + " interest earned: " + formatted);
+                        System.out.println("  [penalty] $" + penalty);
+                    }
+                } else {
+                    int daysInMonth = closeDate.getDay();
+                    double annualRate = getAnnualRate(acct);
+                    earnedInterest = acct.getBalance() * (annualRate / 365.0) * daysInMonth;
+                    String formatted = String.format("$%.2f", earnedInterest);
+                    System.out.println("--" + acctNum + " interest earned: " + formatted);
+                }
+
+                database.getArchive().add(acct, closeDate);
+                database.remove(acct);
+                i--;
+            }
+        }
+        if (!found) {
+            System.out.println(profile + " does not have any accounts in the database.");
+        } else {
+            System.out.println("All accounts for " + profile + " are closed and moved to archive.");
+        }
+    }
+
+    double roundUpToTwoDecimal(double amount) {
+        return Math.ceil(amount * 100.0) / 100.0;
     }
 
     private double getAnnualRate(Account acct){
@@ -424,7 +493,23 @@ public class TransactionManager {
             return 0.015;
         }
 
-        return -1; // unknown type
+        return 0.0; // unknown type
+    }
+
+    public int daysBetween(Date d1, Date d2) {
+        int[] daysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+        int total1 = d1.getYear() * 365 + d1.getDay();
+        for (int i = 0; i < d1.getMonth() - 1; i++) {
+            total1 += daysInMonth[i];
+        }
+
+        int total2 = d2.getYear() * 365 + d2.getDay();
+        for (int i = 0; i < d2.getMonth() - 1; i++) {
+            total2 += daysInMonth[i];
+        }
+
+        return Math.abs(total2 - total1);
     }
 
 

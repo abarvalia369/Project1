@@ -56,7 +56,6 @@ public class Archive {
         AccountNode node = first;
         while( node != null ){
             if(node.account != null) {
-                node.account.setBalance(0.00);
                 System.out.println(node.account.toString());
             }
             node = node.next;
