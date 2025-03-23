@@ -152,6 +152,7 @@ public class AccountDatabase extends List<Account> {
         int index = findAccount(number);
         if (index != NOT_FOUND) {
             double newBalance = this.get(index).getBalance() + amount;
+            this.get(index).setBalance(newBalance);
         }
     }
 

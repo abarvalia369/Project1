@@ -521,7 +521,6 @@ public class TransactionManager {
         }
         String accountNumberStr = line[1];
         String amountStr        = line[2];
-
         int index = database.findAccount(accountNumberStr);
         if(index == -1){
             System.out.println(accountNumberStr + " does not exist");
@@ -529,7 +528,6 @@ public class TransactionManager {
         }
         Account acct = database.get(index);
         AccountNumber acctNum = acct.getNumber();
-
         double depositAmount;
         try {
             depositAmount = Double.parseDouble(amountStr);
@@ -545,8 +543,11 @@ public class TransactionManager {
             System.out.println(acctNum + " does not exist");
             return;
         }
-
         System.out.println("BEFORE " + acct.getBalance());
+        Date date = new Date();
+        Branch branch = acctNum.getBranch();
+        Activity act = new Activity(date, branch, 'D', depositAmount, true);
+        acct.addActivity(act);
         database.deposit(acctNum, depositAmount);
         System.out.println(depositAmount + " deposited to " + accountNumberStr + ".");
         System.out.println("AFTER " + acct.getBalance());
@@ -601,13 +602,19 @@ public class TransactionManager {
         boolean success = database.withdraw(acctNum, withdrawAmount);
         if (!success && (acctNum.getAccountType() == AccountType.MoneyMarketSavings) &&  acct.getBalance() < 2000) {
             System.out.println(accountNumberStr + " balance below $2,000 - withdrawing " + withdrawAmount + " - insufficient funds.");
+            return;
         }else if(!success){
             System.out.println(accountNumberStr + " withdrawing " + withdrawAmount + " - insufficient funds.");
+            return;
         }else if((acctNum.getAccountType() == AccountType.MoneyMarketSavings) &&  acct.getBalance() < 2000){
             System.out.println(accountNumberStr + " balance below $2,000 - " + withdrawAmount + " withdrawn from " + accountNumberStr);
         }else{
             System.out.println(withdrawAmount + " withdrawn from " + accountNumberStr);
         }
+        Date date = new Date();
+        Branch branch = acctNum.getBranch();
+        Activity act = new Activity(date, branch, 'W', withdrawAmount, false);
+        acct.addActivity(act);
         System.out.println("AFTER " + acct.getBalance());
     }
 
