@@ -28,6 +28,7 @@ public abstract class Account implements Comparable<Account> {
         this.number = number;
         this.holder = holder;
         this.balance = balance;
+        this.activities = new List<Activity>();
     }
 
     /**
@@ -49,6 +50,9 @@ public abstract class Account implements Comparable<Account> {
      *
      */
     public void printActivities(){
+        if (activities == null || activities.isEmpty()) {
+          return;
+        }
         System.out.println("[Activity]");
         for(int i = 0; i < activities.size(); i++){
             System.out.println(String.format(activities.get(i).getDate()  + "::" +  activities.get(i).getLocation().toString().toUpperCase() +

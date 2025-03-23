@@ -138,6 +138,7 @@ public class AccountDatabase extends List<Account> {
             return false;
         }
 
+
     }
 
     /**
@@ -151,7 +152,6 @@ public class AccountDatabase extends List<Account> {
         int index = findAccount(number);
         if (index != NOT_FOUND) {
             double newBalance = this.get(index).getBalance() + amount;
-            this.get(index).setBalance(newBalance);
         }
     }
 
@@ -368,6 +368,7 @@ public class AccountDatabase extends List<Account> {
             double amount = Double.parseDouble(token[4]);
             //boolean atm  = Boolean.parseBoolean(token[5]);
             Activity act = new Activity(date,location,type.charAt(0),amount, true );
+            acct.addActivity(act);
             String WoD = "";
             if(type.charAt(0) == 'W'){
                 WoD = "W";
